@@ -1,0 +1,110 @@
+#leftcontent{width:100%;background:#FFF;margin-right:10px;float:left;padding-top:65px;box-sizing:border-box;}
+.login_other{padding-left:20px;width:200px;margin:auto;}
+p.title_inside{margin:0 auto;overflow:hidden;clear:both;padding:7px 0 5px 20px;clear:both;font-size:22px;color:#303030;margin-top:20px;font-weight:700;border-bottom:1px solid #eee}
+p.title_login{font-size:14px;color:#303030;margin:20px 0 20px 20px}
+p.title_inside a.hi{font-size:16px;color:#0080AF;font-weight:700}
+div.columm{vertical-align:top;float:left}
+.login_col_4{width:35%;float:left;box-sizing:border-box;padding-right:10px;padding-bottom:20px;}
+.login_col_8{width:65%;float:left;box-sizing:border-box;padding-bottom:20px;position:relative;padding-left:10px;padding-right:10px;border-left:1px solid #ececec;min-height:400px}
+.login_gv_des,{width: 100%;float: left;height: auto;box-sizing: border-box;padding: 10px 20px;}
+.login_gv_reg{margin: 0 auto;width: 70%;}
+.login_gv_des .item-login_gv_des{padding: 0px 20px;box-sizing: border-box;float:left}
+.login_gv_reg .title{  width: 100%;float: left;text-align: center;font-size: 20px;font-weight: bold;margin-top: 30px;}
+a.btn_face{background:url(../upload/board2.png) no-repeat left 0;cursor:pointer;height:42px;width:195px;border:0;display:block}
+a.btn_face:hover{background:url(../upload/board2.png) no-repeat left -174px;cursor:pointer;height:42px;width:195px;border:0;display:block}
+.clean{clear:both;line-height:0;font-size:0;margin:0;padding:0}
+div.form{overflow:hidden;font-size:14px;color:#414141}
+div.form a{color:#0080AF}
+div.form a:hover{text-decoration:underline}
+div.form .field{display:block;padding:4px 0;width:100%;position:relative;float:left;padding-left:100px;box-sizing:border-box;}
+div.form.frmRegister .field{display:block;padding:4px 0;width:100%;position:relative;float:left;padding-left:150px;box-sizing:border-box;}
+.field span.other_color{display:block;float:left;margin-right:5px;margin-top:9px}
+div.form input[type="checkbox"]{vertical-align:text-bottom;margin:0 5px}
+div.form input[type="radio"]{vertical-align:text-top;margin-top:3px;margin-right:5px}
+div.form input[type=text],div.form input[type=password]{font-size:13px;border:1px solid #D8D3D0;border-radius:2px 2px 2px 2px;margin:0;color:#858585!important;height:17px;padding:10px;float:left;}
+div.form input[type=text],div.form .pass{width:100%;float:left;max-width:300px;position:relative;}
+div.form input[type=text],div.form .pass input[type= password]{height:40px;}
+div.form .pass input[type= password]{width:100%;float:left;height:40px;padding-right:40px;}
+div.form .forgot-password-link{text-indent:0;font-weight:700;border:1px solid #a7a7a7;cursor:pointer;margin:0;overflow:visible;text-decoration:none!important;width:auto;text-shadow:0 1px 1px rgba(255,255,255,0.75);border-radius:0 3px 3px 0;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;background-color:#f2f2f2;filter:progid:DXImageTransform.Microsoft.gradient(gradientType=0,startColorstr='#FFF2F2F2',endColorstr='#FFD1D1D1');background-image:-webkit-linear-gradient(top,#f2f2f2 0%,#e9e9e9 32%,#d8d8d8 74%,#d1d1d1 100%);background-image:-moz-linear-gradient(top,#f2f2f2 0%,#e9e9e9 32%,#d8d8d8 74%,#d1d1d1 100%);background-image:-o-linear-gradient(top,#f2f2f2 0%,#e9e9e9 32%,#d8d8d8 74%,#d1d1d1 100%);background-image:linear-gradient(top,#f2f2f2 0%,#e9e9e9 32%,#d8d8d8 74%,#d1d1d1 100%);white-space:nowrap;vertical-align:middle;float:left;display:block;font-size:16px;line-height:33px;height:40px;padding:4px 11px 0;position:absolute;right:0;top:0}
+div.frmRegister input.text{width:100%;float:left;max-width:350px;position:relative;height:40px;}
+div.form select{border:1px solid #D8D3D0;border-radius:2px 2px 2px 2px;margin:0;color:#858585!important;padding:9px;height:40px;float:left;}
+div.form select.error{width:auto!important;}
+div.form textarea{border:1px solid #D8D3D0;border-radius:3px 3px 3px 3px;box-shadow:0 1px 1px rgba(0,0,0,0.075) inset;height:150px;overflow:hidden;padding:7px;width:350px}
+div.form label.field_R{display:block;padding:3px 0 0 3px;float:left;margin-right:10px}
+div.form label.field_L{display:block;text-align:left;padding:0px;position:absolute;left:0;top:15px;}
+div.form label.field_L1{display:block;float:left;width:69px;text-align:left;padding:0 5px 0 0}
+div.form div.field_btn{display:block;width:100%;overflow:hidden;padding:10px 0px;}
+div.frmRegister div.field_btn{display:block;width:100%;overflow:hidden;padding:10px 0px;padding-left:150px;}
+.field span.other_color{display:block;float:left;margin-left:5px;margin-top:10px}
+.other_color{color:red!important}
+label.error+.other_color{display:none};
+a.link_register{font-size:16px;font-style:italic;margin-left:15px;}
+.form div.field_link{display:block;width:100%;overflow:hidden;padding:6px 6px 6px 100px;font-size:13px}
+.frmRegister div.field_link{display:block;width:100%;overflow:hidden;padding:6px 6px 6px 150px;font-size:13px}
+div.form  .field .error{color:red;font-size:11px;text-align:left;padding-left:5px;float:left;width:100%;}
+button.btn_orange,a.btn_orange{background:#f87921;border:1px solid #f87921;color:#fff!important;padding:10px 20px;font-size:14px;border-radius:3px;font-weight:700;cursor:pointer;font-family:Arial,Helvetica,sans-serif;display:inline-block;white-space:nowrap;}
+button.btn_orange:hover,a.btn_orange:hover{background:#f25d29;text-decoration:none!important;color:#fff!important}
+div.form .w150{width:150px!important}
+div.form .w105{width:105px!important}
+.msgdk{float:left;margin-top:10px;width:100%;}
+.msgdk li{float:left;margin-bottom:10px;list-style-type:none;width:100%;position:relative;}
+.msgdk li .sprite{position:absolute;top:5px;left:15px;margin:0px;max-width:35px;}
+.msgdk li .msgcont{float:left;width:100%;font-size:13px;padding-left:50px;box-sizing: border-box;}
+.dk1{width:27px;height:30px;background-position:-99px -122px;margin:3px 10px 0 20px;display:inline-block;}
+.dk2{width:29px;height:30px;background-position:-130px -121px;margin:3px 10px 0 20px;display:inline-block;}
+.dk3{width:30px;height:33px;background-position:-168px -121px;margin:3px 10px 0 14px;display:inline-block;}
+.dk4{width:30px;height:37px;background-position:-209px -120px;margin:3px 10px 0 14px;display:inline-block;}
+.dk5{width:30px;height:33px;background-position:-249px -119px;margin:3px 10px 0 14px;display:inline-block;}
+
+.h1htgd{padding:20px;background:#f7f7f7;width:100%;float:left;font-size:20px;}
+.htgdgc{padding:10px 0px 0px 0px;line-height:25px;}
+.headtopgv{float:left;width:100%;border-bottom:2px solid #128deb;}
+.headtopgv a{color:#FFF;}
+.headtopgv .active,.headtopgv div:hover{background:#128deb;float:left;}
+.headtopgv div{background:#bbb;float:left;padding: 10px 20px;margin-right: 15px;font-size: 16px;box-sizing: border-box;}
+.contgv{float:left;margin-top:20px;width:100%;}
+.errormsg{float:left;color:red;}
+
+.login_gv_des,.login_gv_reg{float:left;width:100%;}
+.login_gv_des .title,.login_gv_reg .title{color:#0f75bd;font-size: 25px;font-weight: 600;float:left;width:100%;text-align:center;} 
+.login_gv_des .title span,.login_gv_reg .title span{position: relative;padding-bottom:5px;}
+.login_gv_des .title span:after,.login_gv_reg .title span:after{    content: "";
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    bottom: 0;
+    height: 2px;
+    background: #0f75bd;}
+
+.bg-top-banner{background-position: center;
+    background-repeat: no-repeat;
+    -moz-transition: opacity .25s cubic-bezier(0.0,0.0,0.2,1);
+    -webkit-transition: opacity .25s cubic-bezier(0.0,0.0,0.2,1);
+    transition: opacity .25s cubic-bezier(0.0,0.0,0.2,1);
+    background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-image: url(../images/graphics/hoptac-banner.jpg);
+    color: #fff;
+    height: 320px;    max-width: 1920px;}
+
+@media(max-width:820px){
+	.login_col_4,.login_col_8{float:left;width:100%;text-align:center;}
+	.login_col_8{border-top: 1px solid #eee;}
+	.login_col_8 #frmLogin{margin:auto;width:100%;max-width:415px;}
+	.field span.other_color{display:none;}
+	
+	
+}
+
+@media(max-width:668px){
+	div.form.frmRegister .field,.frmRegister div.field_link{padding-left:0px;}
+	div.form.frmRegister label.field_L{left:0;top:0;position:relative;float:left;width:100%;}
+	.headtopgv div{padding:10px;}
+	.login_gv_reg{width:100%;padding:0px 20px;}
+}
+
+@media(max-width:500px){
+	div.frmRegister div.field_btn{padding:20px 0px;}
+	
+}
