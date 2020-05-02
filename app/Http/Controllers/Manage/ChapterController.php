@@ -55,6 +55,7 @@ class ChapterController extends AppBaseController
      */
     public function store(CreateChapterRequest $request)
     {
+        $request->merge(['slug' => str_slug($request->name)]);
         $input = $request->all();
 
         $chapter = $this->chapterRepository->create($input);
@@ -122,6 +123,7 @@ class ChapterController extends AppBaseController
             return redirect(route('admin.chapters.index'));
         }
 
+        $request->merge(['slug' => str_slug($request->name)]);
         $chapter = $this->chapterRepository->update($request->all(), $id);
 
         Flash::success('Cập nhật dữ liệu thành công');

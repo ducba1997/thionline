@@ -4,14 +4,10 @@
                 <th>STT</th>
                 <th>Name</th>
         <th>Email</th>
-        <th>Email Verified At</th>
-        <th>Id Gender</th>
-        <th>Id Permission</th>
-        <th>Avatar</th>
-        <th>Birthday</th>
-        <th>Address</th>
-        <th>Password</th>
-        <th>Remember Token</th>
+        <th>Giới tính</th>
+        <th>Quyền</th>
+        <th>Địa chỉ</th>
+        <th>Trạng thái</th>
                 <th>Hành động</th>
             </tr>
         </thead>
@@ -22,14 +18,16 @@
             <td>{{++$stt}}</td>
                 <td>{{ $users->name }}</td>
             <td>{{ $users->email }}</td>
-            <td>{{ $users->email_verified_at }}</td>
-            <td>{{ $users->id_gender }}</td>
-            <td>{{ $users->id_permission }}</td>
-            <td>{{ $users->avatar }}</td>
-            <td>{{ $users->birthday }}</td>
+            <td>{{ $users->idGender->name }}</td>
+            <td>{{ $users->idPermission->name }}</td>
             <td>{{ $users->address }}</td>
-            <td>{{ $users->password }}</td>
-            <td>{{ $users->remember_token }}</td>
+            <td>
+            @if($users->active==1)
+            <span class="label label-success">Mở</span>
+            @else
+            <span class="label label-danger">Đóng</span>
+            @endif
+            </td>
                 <td>
                     {!! Form::open(['route' => ['admin.users.destroy', $users->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

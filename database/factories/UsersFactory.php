@@ -17,6 +17,9 @@ $factory->define(Users::class, function (Faker $faker) {
         'birthday' => $faker->word,
         'address' => $faker->text,
         'password' => $faker->word,
+        'provider_id' => $faker->word,
+        'provider' => $faker->word,
+        'active' => $faker->word,
         'remember_token' => $faker->word,
         'created_at' => $faker->date('Y-m-d H:i:s'),
         'updated_at' => $faker->date('Y-m-d H:i:s')

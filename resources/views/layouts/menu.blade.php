@@ -54,7 +54,8 @@
 <li class="{{ Request::is('admin/resultTests*') ? 'active' : '' }}">
     <a href="{{ route('admin.resultTests.index') }}"><i class="fa fa-edit"></i><span>Quản lý bài thi</span></a>
 </li>
-
+<!--
 <li class="{{ Request::is('admin/resultTestDetails*') ? 'active' : '' }}">
     <a href="{{ route('admin.resultTestDetails.index') }}"><i class="fa fa-edit"></i><span>Chi tiết bài thi</span></a>
-</li>
+</li>-->
+

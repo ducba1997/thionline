@@ -55,6 +55,7 @@ class SubjectController extends AppBaseController
      */
     public function store(CreateSubjectRequest $request)
     {
+        $request->merge(['slug' => str_slug($request->name)]);
         $input = $request->all();
 
         $subject = $this->subjectRepository->create($input);
@@ -121,7 +122,7 @@ class SubjectController extends AppBaseController
 
             return redirect(route('admin.subjects.index'));
         }
-
+        $request->merge(['slug' => str_slug($request->name)]);
         $subject = $this->subjectRepository->update($request->all(), $id);
 
         Flash::success('Cập nhật dữ liệu thành công');

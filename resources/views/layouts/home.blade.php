@@ -12,6 +12,14 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i&amp;subset=vietnamese" rel="stylesheet">
     <script src="js/jquery-1.10.1.min.js"></script>
     <script src="js/jquery.slimscroll.js"></script>
+    <link rel="stylesheet" href="{{asset('css/pace.min.css')}}">
+    <script src="{{asset('js/pace.min.js')}}"></script>
+    <script type="text/javascript">
+        // To make Pace works on Ajax calls
+        $(document).ajaxStart(function() {
+            Pace.restart()
+        })
+    </script>
     @yield('css')
     <!-- <link rel="stylesheet" href="css/fontawesome.5.2.0/css/all.css"> -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -360,6 +368,8 @@
         </div>
     </footer>
     <p class="mauhead" style="min-height:90px;width:100%;float:left;">&nbsp;</p>
+    
+    
     @yield('js')
 </body>
 

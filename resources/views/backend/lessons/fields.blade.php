@@ -1,60 +1,75 @@
 <!-- Name Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('name', 'Name:') !!}
+    {!! Form::label('name', 'Tiêu đề:') !!}
     {!! Form::text('name', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Slug Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-6 hidden">
     {!! Form::label('slug', 'Slug:') !!}
-    {!! Form::text('slug', null, ['class' => 'form-control']) !!}
+    {!! Form::text('slug', 'abc', ['class' => 'form-control']) !!}
 </div>
 
 <!-- Id Grade Field -->
+<?php
+
+use App\Models\Manage\Chapter;
+use App\Models\Manage\Grade;
+use App\Models\Manage\Subject;
+
+$gradeItems= Grade::all()->pluck('name','id');
+$subjectItems=Subject::all()->pluck('name','id');
+$chapterItems=Chapter::all()->pluck('name','id');
+$stt=array(
+    '1'=>'Hoạt động',
+    '0'=>'Không hoạt động' 
+);
+?>
 <div class="form-group col-sm-6">
-    {!! Form::label('id_grade', 'Id Grade:') !!}
-    {!! Form::number('id_grade', null, ['class' => 'form-control']) !!}
+    {!! Form::label('id_grade', 'Khối:') !!}
+    {!! Form::select('id_grade',$gradeItems, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Id Subject Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('id_subject', 'Id Subject:') !!}
-    {!! Form::number('id_subject', null, ['class' => 'form-control']) !!}
+    {!! Form::label('id_subject', 'Môn:') !!}
+    {!! Form::select('id_subject', $subjectItems,null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Id Chapter Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('id_chapter', 'Id Chapter:') !!}
-    {!! Form::number('id_chapter', null, ['class' => 'form-control']) !!}
+    {!! Form::label('id_chapter', 'Chương:') !!}
+    {!! Form::select('id_chapter',$chapterItems, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Image Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('image', 'Image:') !!}
+<div class="form-group col-sm-6 hidden">
+    {!! Form::label('image', 'Ảnh:') !!}
     {!! Form::text('image', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Content Field -->
 <div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('content', 'Content:') !!}
-    {!! Form::textarea('content', null, ['class' => 'form-control']) !!}
+    {!! Form::label('content', 'Nội dung:') !!}
+    {!! Form::textarea('content', null, ['class' => 'form-control', 'id'=>'editorContent']) !!}
 </div>
-
-<!-- Assignment Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('assignment', 'Assignment:') !!}
-    {!! Form::text('assignment', null, ['class' => 'form-control']) !!}
-</div>
+@push('scripts')
+    <script src="{{asset('js/ckeditor/ckeditor.js')}}"></script>
+    <script>
+        CKEDITOR.replace('editorContent', {
+            filebrowserBrowseUrl: "{{ route('ckfinder_browser') }}"
+         } );
+    </script>
+    @include('ckfinder::setup')
+@endpush
 
 <!-- Status Field -->
+
 <div class="form-group col-sm-6">
-    {!! Form::label('status', 'Status:') !!}
-    <label class="checkbox-inline">
-        {!! Form::hidden('status', 0) !!}
-        {!! Form::checkbox('status', '1', null) !!}
+    {!! Form::label('status', 'Trạng thái:') !!}
+    {!! Form::select('status',$stt, null, ['class' => 'form-control']) !!}
     </label>
 </div>
-
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">

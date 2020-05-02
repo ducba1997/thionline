@@ -415,7 +415,7 @@
                             <li id="" class="item-quest-answer ">
                                 <div class="fleft">
                                     <span class="fleft">
-                                        <input type="radio" value="{{$answer}}" id=""> <strong style="font-size: 13px">{{$letter}}.&nbsp<?php $letter++;
+                                        <input type="radio" value="{{$answer}}" name="question_{{$value['id']}}" id=""> <strong style="font-size: 13px">{{$letter}}.&nbsp<?php $letter++;
                                                                                                                                                                              ?> </strong> </span>
                                     <span class="fleft" style="font-size: 13px">
                                         <p> {{$answer}} </p>
@@ -520,13 +520,15 @@
             //$id_question =$this.parent();
             $id_question = $this.parent().attr('value');
             $answer = $this.parent().find('input[type=radio]:checked').val();
-            $this.text("Đang lưu...");
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
+            
+            if($answer){
+                $this.text("Đang lưu...");
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
                 url: "{{route('exam.save')}}",
                 type: "post",
                 data:{
@@ -534,15 +536,21 @@
                         answer: $answer,
                         time_remaining: $int_minute
                 },
+                dataType: 'text',
                 success: function(data) {
                     $('#count_answered').text(data+" /");
                     $this.text("Đã lưu"); 
+                    alert(url);
                 },
                 error: function(error) {
                     alert("Không thể lưu đáp án vào lúc này");
                     $this.text("Đáp án chưa lưu"); 
                 }
             });
+            }else{
+                alert('Bạn chưa chọn đáp án')
+            }
+            
             
         });
         

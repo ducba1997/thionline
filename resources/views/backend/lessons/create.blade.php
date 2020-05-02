@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Lesson
+            Bài học
         </h1>
     </section>
     <div class="content">
@@ -20,4 +20,6 @@
             </div>
         </div>
     </div>
+    
+    
 @endsection

@@ -25,7 +25,6 @@ class CreateLessonTable extends Migration
             $table->foreign('id_chapter')->references('id')->on('chapter');
             $table->string('image')->nullable();
             $table->text('content');
-            $table->string('assignment')->nullable();
             $table->tinyInteger('status');
             $table->timestamps();
         });

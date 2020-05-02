@@ -7,7 +7,7 @@ use Eloquent as Model;
 /**
  * Class Users
  * @package App\Models\Manage
- * @version April 29, 2020, 4:37 pm +07
+ * @version April 30, 2020, 9:49 am +07
  *
  * @property \App\Models\Manage\Gender idGender
  * @property \App\Models\Manage\Permission idPermission
@@ -22,6 +22,9 @@ use Eloquent as Model;
  * @property string birthday
  * @property string address
  * @property string password
+ * @property string provider_id
+ * @property string provider
+ * @property boolean active
  * @property string remember_token
  */
 class Users extends Model
@@ -45,6 +48,9 @@ class Users extends Model
         'birthday',
         'address',
         'password',
+        'provider_id',
+        'provider',
+        'active',
         'remember_token'
     ];
 
@@ -64,6 +70,9 @@ class Users extends Model
         'birthday' => 'date',
         'address' => 'string',
         'password' => 'string',
+        'provider_id' => 'string',
+        'provider' => 'string',
+        'active' => 'boolean',
         'remember_token' => 'string'
     ];
 

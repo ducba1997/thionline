@@ -1,73 +1,87 @@
+<?php
+
+use App\Models\Manage\Chapter;
+use App\Models\Manage\Grade;
+use App\Models\Manage\Subject;
+
+$gradeItems= Grade::all()->pluck('name','id');
+$subjectItems=Subject::all()->pluck('name','id');
+$chapterItems=Chapter::all()->pluck('name','id');
+$stt=array(
+    '1'=>'Hoạt động',
+    '0'=>'Không hoạt động' 
+);
+$tt=array(
+    '1' => 'Cho phép',
+    '0' => 'Không cho phép'
+)
+?>
+
 <!-- Id Grade Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('id_grade', 'Id Grade:') !!}
-    {!! Form::number('id_grade', null, ['class' => 'form-control']) !!}
+    {!! Form::label('id_grade', 'Khối:') !!}
+    {!! Form::select('id_grade',$gradeItems, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Id Subject Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('id_subject', 'Id Subject:') !!}
-    {!! Form::number('id_subject', null, ['class' => 'form-control']) !!}
+    {!! Form::label('id_subject', 'Môn:') !!}
+    {!! Form::select('id_subject', $subjectItems,null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Id Chapter Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('id_chapter', 'Id Chapter:') !!}
-    {!! Form::number('id_chapter', null, ['class' => 'form-control']) !!}
+    {!! Form::label('id_chapter', 'Chương:') !!}
+    {!! Form::select('id_chapter',$chapterItems, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Id Users Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-6 hidden">
     {!! Form::label('id_users', 'Id Users:') !!}
-    {!! Form::number('id_users', null, ['class' => 'form-control']) !!}
+    {!! Form::text('id_users', 'da', ['class' => 'form-control']) !!}
 </div>
 
 <!-- Name Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('name', 'Name:') !!}
+<div class="form-group col-sm-12">
+    {!! Form::label('name', 'Tên:') !!}
     {!! Form::text('name', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Slug Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-6 hidden">
     {!! Form::label('slug', 'Slug:') !!}
-    {!! Form::text('slug', null, ['class' => 'form-control']) !!}
+    {!! Form::text('slug', 'a', ['class' => 'form-control']) !!}
 </div>
 
 <!-- Description Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('description', 'Description:') !!}
-    {!! Form::text('description', null, ['class' => 'form-control']) !!}
+<div class="form-group col-sm-12">
+    {!! Form::label('description', 'Mô tả:') !!}
+    {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Password Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-6 hidden">
     {!! Form::label('password', 'Password:') !!}
     {!! Form::password('password', ['class' => 'form-control']) !!}
 </div>
 
 <!-- Time To Do Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('time_to_do', 'Time To Do:') !!}
+    {!! Form::label('time_to_do', 'Thời gian làm bài (giây):') !!}
     {!! Form::number('time_to_do', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Allow Review Answer Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('allow_review_answer', 'Allow Review Answer:') !!}
-    <label class="checkbox-inline">
-        {!! Form::hidden('allow_review_answer', 0) !!}
-        {!! Form::checkbox('allow_review_answer', '1', null) !!}
-    </label>
+    {!! Form::label('allow_review_answer', 'Cho phép xem lại đáp án:') !!}
+    {!! Form::select('allow_review_answer',$tt, null, ['class' => 'form-control']) !!}
 </div>
 
 
 <!-- Status Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('status', 'Status:') !!}
-    <label class="checkbox-inline">
-        {!! Form::hidden('status', 0) !!}
-        {!! Form::checkbox('status', '1', null) !!}
+    {!! Form::label('status', 'Trạng thái:') !!}
+    {!! Form::select('status',$stt, null, ['class' => 'form-control']) !!}
     </label>
 </div>
 

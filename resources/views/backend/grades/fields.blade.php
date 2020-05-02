@@ -7,7 +7,7 @@
 <!-- Slug Field -->
 <div class="form-group col-sm-6 hidden">
     {!! Form::label('slug', 'Slug:') !!}
-    {!! Form::text('slug', null, ['class' => 'form-control hidden']) !!}
+    {!! Form::text('slug', 'abc', ['class' => 'form-control' ]) !!}
 </div>
 
 <!-- Submit Field -->

@@ -41,7 +41,6 @@ class Lesson extends Model
         'id_chapter',
         'image',
         'content',
-        'assignment',
         'status'
     ];
 
@@ -59,7 +58,6 @@ class Lesson extends Model
         'id_chapter' => 'integer',
         'image' => 'string',
         'content' => 'string',
-        'assignment' => 'string',
         'status' => 'boolean'
     ];
 
@@ -75,7 +73,6 @@ class Lesson extends Model
         'id_subject' => 'required',
         'id_chapter' => 'required',
         'content' => 'required',
-        'assignment' => 'required',
         'status' => 'required'
     ];
 

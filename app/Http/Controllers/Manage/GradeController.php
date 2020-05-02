@@ -55,8 +55,8 @@ class GradeController extends AppBaseController
      */
     public function store(CreateGradeRequest $request)
     {
+        $request->merge(['slug' => str_slug($request->name)]);
         $input = $request->all();
-
         $grade = $this->gradeRepository->create($input);
 
         Flash::success('Thêm mới thành công');
@@ -121,7 +121,7 @@ class GradeController extends AppBaseController
 
             return redirect(route('admin.grades.index'));
         }
-
+        $request->merge(['slug' => str_slug($request->name)]);
         $grade = $this->gradeRepository->update($request->all(), $id);
 
         Flash::success('Cập nhật dữ liệu thành công');

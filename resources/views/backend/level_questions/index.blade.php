@@ -66,7 +66,7 @@
     <div class="panel panel-default" style="margin: 0px 15px 0px 15px">
     <div class="panel-body">
         <section class="content-header">
-            <h1 class="pull-left">Level Questions</h1>
+            <h1 class="pull-left">Mức độ câu hỏi</h1>
         <h1 class="pull-right">
            <a class="btn btn-success pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{{ route('admin.levelQuestions.create') }}"><i class="fa fa-fw fa-plus"></i>&nbspThêm mới</a>
         </h1>

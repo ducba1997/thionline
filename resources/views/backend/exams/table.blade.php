@@ -1,18 +1,48 @@
+<div>
+    <?php
+    $gradeItems = App\Models\Manage\Grade::all()->pluck('name', 'id');
+    $subjectItems = App\Models\Manage\Subject::all()->pluck('name', 'id');
+    $chapterItems = App\Models\Manage\Chapter::all()->pluck('name', 'id');
+    ?>
+
+    <div class="pull-left">
+        <label for="course_id">Khối:</label>
+        <select id="grade" class="form-control" style="display: inline-block;width:63%">
+            <option value="">All</option>
+            @foreach($gradeItems as $data)
+            <option value="{{$data}}">{{$data}}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="pull-left">
+        <label for="">Môn:</label>
+        <select id="subject" class="form-control" style="display: inline-block;width:63%">
+            <option value="">All</option>
+            @foreach($subjectItems as $data)
+            <option value="{{$data}}">{{$data}}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="pull-left" style="width: 166px">
+        <label for="">Chương:</label>
+        <select id="chapter" class="form-control" style="display: inline-block;width:63%">
+            <option value="">All</option>
+            @foreach($chapterItems as $data)
+            <option value="{{$data}}">{{$data}}</option>
+            @endforeach
+        </select>
+    </div>
+</div>
     <table class="ui celled table" id="exams-table">
         <thead>
             <tr>
                 <th>STT</th>
-                <th>Id Grade</th>
-        <th>Id Subject</th>
-        <th>Id Chapter</th>
-        <th>Id Users</th>
-        <th>Name</th>
-        <th>Slug</th>
-        <th>Description</th>
-        <th>Password</th>
-        <th>Time To Do</th>
-        <th>Allow Review Answer</th>
-        <th>Status</th>
+                <th>Khối</th>
+        <th>Môn</th>
+        <th>Chương</th>
+        <th>Tên</th>
+        <th>Thời gian</th>
+        <th>Trạng thái</th>
                 <th>Hành động</th>
             </tr>
         </thead>
@@ -21,17 +51,18 @@
         @foreach($exams as $exam)
             <tr>
             <td>{{++$stt}}</td>
-                <td>{{ $exam->id_grade }}</td>
-            <td>{{ $exam->id_subject }}</td>
-            <td>{{ $exam->id_chapter }}</td>
-            <td>{{ $exam->id_users }}</td>
+                <td>{{ $exam->idGrade->name }}</td>
+            <td>{{ $exam->idSubject->name }}</td>
+            <td>{{ $exam->idChapter->name }}</td>
             <td>{{ $exam->name }}</td>
-            <td>{{ $exam->slug }}</td>
-            <td>{{ $exam->description }}</td>
-            <td>{{ $exam->password }}</td>
             <td>{{ $exam->time_to_do }}</td>
-            <td>{{ $exam->allow_review_answer }}</td>
-            <td>{{ $exam->status }}</td>
+            <td>
+            @if($exam->status==1)
+            <span class="label label-success">Mở</span>
+            @else
+            <span class="label label-danger">Đóng</span>
+            @endif
+            </td>
                 <td>
                     {!! Form::open(['route' => ['admin.exams.destroy', $exam->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

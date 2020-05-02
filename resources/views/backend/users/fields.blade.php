@@ -10,31 +10,28 @@
     {!! Form::email('email', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Email Verified At Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('email_verified_at', 'Email Verified At:') !!}
-    {!! Form::date('email_verified_at', null, ['class' => 'form-control','id'=>'email_verified_at']) !!}
-</div>
-
-@push('scripts')
-    <script type="text/javascript">
-        $('#email_verified_at').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm:ss',
-            useCurrent: false
-        })
-    </script>
-@endpush
-
 <!-- Id Gender Field -->
+<?php
+
+use App\Models\Manage\Gender;
+use App\Models\Manage\Permission;
+
+$genderItems= Gender::all()->pluck('name','id');
+$permissionItems=Permission::all()->pluck('name','id');
+$stt=array(
+    '1'=>'Hoạt động',
+    '0'=>'Không hoạt động' 
+);
+?>
 <div class="form-group col-sm-6">
     {!! Form::label('id_gender', 'Id Gender:') !!}
-    {!! Form::number('id_gender', null, ['class' => 'form-control']) !!}
+    {!! Form::select('id_gender',$genderItems, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Id Permission Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('id_permission', 'Id Permission:') !!}
-    {!! Form::number('id_permission', null, ['class' => 'form-control']) !!}
+    {!! Form::select('id_permission',$permissionItems, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Avatar Field -->
@@ -69,11 +66,11 @@
     {!! Form::label('password', 'Password:') !!}
     {!! Form::password('password', ['class' => 'form-control']) !!}
 </div>
-
-<!-- Remember Token Field -->
+<!-- Active Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('remember_token', 'Remember Token:') !!}
-    {!! Form::text('remember_token', null, ['class' => 'form-control']) !!}
+    {!! Form::label('active', 'Active:') !!}
+    {!! Form::select('active',$stt, null, ['class' => 'form-control']) !!}
+    </label>
 </div>
 
 <!-- Submit Field -->

@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Level Question
+           Mức độ câu hỏi
         </h1>
     </section>
     <div class="content">

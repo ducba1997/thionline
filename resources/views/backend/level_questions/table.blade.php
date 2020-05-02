@@ -2,7 +2,7 @@
         <thead>
             <tr>
                 <th>STT</th>
-                <th>Name</th>
+                <th>Tên</th>
                 <th>Hành động</th>
             </tr>
         </thead>

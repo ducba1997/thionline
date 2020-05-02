@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Auth;
 
 class ExamController extends AppBaseController
 {
@@ -55,6 +56,9 @@ class ExamController extends AppBaseController
      */
     public function store(CreateExamRequest $request)
     {
+        $id_user = Auth::id();
+        $request->merge(['slug' => str_slug($request->name)]);
+        $request->merge(['id_users' => str_slug($id_user)]);
         $input = $request->all();
 
         $exam = $this->examRepository->create($input);
@@ -122,6 +126,9 @@ class ExamController extends AppBaseController
             return redirect(route('admin.exams.index'));
         }
 
+        $id_user = Auth::id();
+        $request->merge(['slug' => str_slug($request->name)]);
+        $request->merge(['id_users' => str_slug($id_user)]);
         $exam = $this->examRepository->update($request->all(), $id);
 
         Flash::success('Cập nhật dữ liệu thành công');

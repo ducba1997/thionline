@@ -55,6 +55,7 @@ class LessonController extends AppBaseController
      */
     public function store(CreateLessonRequest $request)
     {
+        $request->merge(['slug' => str_slug($request->name)]);
         $input = $request->all();
 
         $lesson = $this->lessonRepository->create($input);
@@ -121,7 +122,7 @@ class LessonController extends AppBaseController
 
             return redirect(route('admin.lessons.index'));
         }
-
+        $request->merge(['slug' => str_slug($request->name)]);
         $lesson = $this->lessonRepository->update($request->all(), $id);
 
         Flash::success('Cập nhật dữ liệu thành công');

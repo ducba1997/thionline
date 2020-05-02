@@ -58,6 +58,16 @@
             }
         });
 
+        $('#grade').change(function (){
+            dt.column(2).search($('#grade :selected').val()).draw();
+        });
+        $('#subject').change(function (){
+            dt.column(3).search($('#subject :selected').val()).draw();
+        });
+        $('#chapter').change(function (){
+            dt.column(4).search($('#chapter :selected').val()).draw();
+        })
+
     });
 </script>
 @endpush
@@ -66,7 +76,7 @@
     <div class="panel panel-default" style="margin: 0px 15px 0px 15px">
     <div class="panel-body">
         <section class="content-header">
-            <h1 class="pull-left">Lessons</h1>
+            <h1 class="pull-left">Bài học</h1>
         <h1 class="pull-right">
            <a class="btn btn-success pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{{ route('admin.lessons.create') }}"><i class="fa fa-fw fa-plus"></i>&nbspThêm mới</a>
         </h1>

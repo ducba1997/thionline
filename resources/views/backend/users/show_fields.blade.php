@@ -16,11 +16,6 @@
     <p>{{ $users->email }}</p>
 </div>
 
-<!-- Email Verified At Field -->
-<div class="form-group">
-    {!! Form::label('email_verified_at', 'Email Verified At:') !!}
-    <p>{{ $users->email_verified_at }}</p>
-</div>
 
 <!-- Id Gender Field -->
 <div class="form-group">
@@ -56,6 +51,12 @@
 <div class="form-group">
     {!! Form::label('password', 'Password:') !!}
     <p>{{ $users->password }}</p>
+</div>
+
+<!-- Active Field -->
+<div class="form-group">
+    {!! Form::label('active', 'Active:') !!}
+    <p>{{ $users->active }}</p>
 </div>
 
 <!-- Remember Token Field -->

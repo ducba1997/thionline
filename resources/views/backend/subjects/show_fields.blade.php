@@ -6,7 +6,7 @@
 
 <!-- Name Field -->
 <div class="form-group">
-    {!! Form::label('name', 'Name:') !!}
+    {!! Form::label('name', 'Tên:') !!}
     <p>{{ $subject->name }}</p>
 </div>
 
