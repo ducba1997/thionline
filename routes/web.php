@@ -12,13 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('frontend.newexam');
+    return view('home');
 });
 
-Route::get('/baihoc', function () {
-    return view('frontend.lesson');
-});
 Route::get('bai-hoc/{slug}I{id}.html', 'LessonController@index')->name('lesson');
+Route::get('chuong-trinh/{grade?}/{subject?}', 'LessonController@showFullLesson')->name('lesson.full');
+
 
 Route::get('bai-thi/{slug}I{id}.html','ExamController@index')->name('exam.index');
 Route::post('bai-thi/saveanswer','ExamController@saveAnswer')->name('exam.save');

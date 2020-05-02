@@ -54,7 +54,7 @@
                     <nav id="site-navigation" class="main-navigation" role="navigation">
                         <ul class="navigation-menu">
                             <li class="menu ">
-                                <a href="https://hoc247.net/chuong-trinh/lop-12/">Chương Trình</a>
+                                <a href="{{URL('/chuong-trinh/')}}">Chương Trình</a>
                             </li>
                             <li class="menu ">
                                 <a href="https://hoc247.net/nhom-de-thi-kiem-tra/lop-12/">Đề thi</a>
@@ -144,7 +144,7 @@
                         <ul class="tlmenu" data-parent="chuong-trinh">
                             @foreach($data_grade as $value)
                             <li class="">
-                                <a href="{{$value->slug}}">{{$value->name}}</a>
+                                <a href="@yield('submenu')/{{$value->slug}}">{{$value->name}}</a>
                             </li>
                             @endforeach
                         </ul>
@@ -322,7 +322,7 @@
                                     <ul class="menu-ft menu-ft-50">
                                         @foreach($data_grade as $value)
                                             <li>
-                                                <a href="{{$value->slug}}">{{$value->name}}</a>
+                                                <a href="{{URL('/chuong-trinh')}}/{{$value->slug}}">{{$value->name}}</a>
                                             </li>
                                         @endforeach
                                     </ul>

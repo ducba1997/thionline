@@ -16,7 +16,7 @@
                     <?php $data_grade=App\Model\Grade::all(); ?>
                     <ul class="idxulcl hidden-xs">
                         @foreach($data_grade as $value)
-                            <li id="lidata_tieu-hoc"><a href="javascript:void(0);" >{{$value->name}}</a></li>
+                            <li id="lidata_tieu-hoc"><a href="{{URL('/chuong-trinh')}}/{{$value->slug}}" >{{$value->name}}</a></li>
                         @endforeach
                     </ul>
                 </div>
