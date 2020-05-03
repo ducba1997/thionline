@@ -1,10 +1,11 @@
-@extends('layouts.home') @section('content')
+@extends('layouts.home')
 @section('title')
     Chương trình {{$data_subject->name}} {{$data_grade->name}}
 @endsection
 @section('submenu')
     {{URL('/chuong-trinh/')}}
 @endsection
+@section('content')
 <section class="wrapbanner2 hidden-xs">
     <div class="container">
         <h1 class="cate-h1 hidden-xs">{{$data_subject->name}} {{$data_grade->name}}</h1>

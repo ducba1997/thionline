@@ -18,7 +18,7 @@ Route::get('/', function () {
 Route::get('bai-hoc/{slug}I{id}.html', 'LessonController@index')->name('lesson');
 Route::get('chuong-trinh/{grade?}/{subject?}', 'LessonController@showFullLesson')->name('lesson.full');
 
-
+Route::get('de-thi/{grade?}/{subject?}','LessonController@showExamFull')->name('exam.full');
 Route::get('bai-thi/{slug}I{id}.html','ExamController@index')->name('exam.index');
 Route::post('bai-thi/saveanswer','ExamController@saveAnswer')->name('exam.save');
 Route::post('bai-thi/destroy','ExamController@deleteExam')->name('exam.destroy');
@@ -36,84 +36,17 @@ Route::get('/callback/{provider}', 'SocialController@callback');
 
 Route::group(['prefix' => 'admin'], function () {
     Route::resource('genders', 'Manage\GenderController', ["as" => 'admin']);
-});
-
-
-Route::group(['prefix' => 'admin'], function () {
     Route::resource('permissions', 'Manage\PermissionController', ["as" => 'admin']);
-});
-
-
-Route::group(['prefix' => 'admin'], function () {
     Route::resource('grades', 'Manage\GradeController', ["as" => 'admin']);
-});
-
-
-Route::group(['prefix' => 'admin'], function () {
     Route::resource('subjects', 'Manage\SubjectController', ["as" => 'admin']);
-});
-
-
-Route::group(['prefix' => 'admin'], function () {
     Route::resource('users', 'Manage\UsersController', ["as" => 'admin']);
-});
-
-
-Route::group(['prefix' => 'admin'], function () {
     Route::resource('chapters', 'Manage\ChapterController', ["as" => 'admin']);
-});
-
-
-Route::group(['prefix' => 'admin'], function () {
     Route::resource('lessons', 'Manage\LessonController', ["as" => 'admin']);
-});
-
-
-Route::group(['prefix' => 'admin'], function () {
     Route::resource('levelQuestions', 'Manage\LevelQuestionController', ["as" => 'admin']);
-});
-
-
-Route::group(['prefix' => 'admin'], function () {
     Route::resource('exams', 'Manage\ExamController', ["as" => 'admin']);
-});
-
-
-Route::group(['prefix' => 'admin'], function () {
     Route::resource('examDetails', 'Manage\ExamDetailController', ["as" => 'admin']);
-});
-
-
-Route::group(['prefix' => 'admin'], function () {
     Route::resource('questions', 'Manage\QuestionController', ["as" => 'admin']);
-});
-
-
-Route::group(['prefix' => 'admin'], function () {
     Route::resource('resultTests', 'Manage\ResultTestController', ["as" => 'admin']);
-});
-
-
-Route::group(['prefix' => 'admin'], function () {
     Route::resource('resultTestDetails', 'Manage\ResultTestDetailController', ["as" => 'admin']);
-});
 
-
-Route::group(['prefix' => 'admin'], function () {
-    Route::resource('levelQuestions', 'Manage\LevelQuestionController', ["as" => 'admin']);
-});
-
-
-Route::group(['prefix' => 'admin'], function () {
-    Route::resource('examDetails', 'Manage\ExamDetailController', ["as" => 'admin']);
-});
-
-
-Route::group(['prefix' => 'admin'], function () {
-    Route::resource('resultTests', 'Manage\ResultTestController', ["as" => 'admin']);
-});
-
-
-Route::group(['prefix' => 'admin'], function () {
-    Route::resource('resultTestDetails', 'Manage\ResultTestDetailController', ["as" => 'admin']);
 });

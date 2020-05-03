@@ -57,7 +57,7 @@
                                 <a href="{{URL('/chuong-trinh/')}}">Chương Trình</a>
                             </li>
                             <li class="menu ">
-                                <a href="https://hoc247.net/nhom-de-thi-kiem-tra/lop-12/">Đề thi</a>
+                                <a href="{{URL('/de-thi/')}}">Đề thi</a>
                             </li>
                             <li class="menu ">
                                 <a href="https://hoc247.net/hoi-dap/lop-12/toan-hoc/">Hỏi Đáp</a>

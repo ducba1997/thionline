@@ -10,7 +10,6 @@
         <p style="margin:10px 0px 15px 0px">Xin chào <strong><span style="color:#8064a2">{{$name}}</span></strong>,</p>
         <p style="margin:5px 0 0 0"><strong>Thông tin tài khoản:</strong></p>
         <p style="margin:0px">Email đăng nhập:<span style="color:#ff0000"><strong> <a href="{{$email}}" target="_blank">{{$email}}</a> </strong></span> <br> Mật khẩu:<span style="color:#ff0000"><strong> {{$password}} </strong></span></p>
-        <p style="margin:15px 0px">Để hoàn tất việc đăng ký, vui lòng click vào:<strong><span style="color:#8064a2">&nbsp;<a href="" target="_blank" data-saferedirecturl=""> nhấn vào đây</a> </span></strong></p>
         <p style="margin:0px">Chúc bạn học tập thật tốt</p>
         <p style="margin:0px">Trân trọng,</p>
     </div>

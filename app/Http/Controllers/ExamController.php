@@ -17,6 +17,9 @@ class ExamController extends Controller
     {
         $this->middleware('auth');
     }
+
+    
+
     public function index($slug, $id)
     {
         $data_exam = Exam::where('slug', $slug)->where('id', $id);

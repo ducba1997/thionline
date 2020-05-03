@@ -567,6 +567,7 @@
                 },
                 dataType: 'text',
                 success: function(data) {
+                    Pace.restart();
                     $('#count_answered').text(data+" /");
                     $this.text("Đã lưu"); 
                     alert(url);

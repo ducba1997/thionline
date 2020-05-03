@@ -1,7 +1,7 @@
 @extends('layouts.home')
 @section('title','Không tìm thấy trang')
 @section('content')
-<div class="fleft w100per padtop50 paddingbot50">
+<div class="fleft w100per padtop50 paddingbot50" style="margin-top: 20px">
 			<div class="fleft w100per canhgiua">
 				<img style="width:100%;max-width:355px;height:auto;" src="upload/page404.png">
 			</div>
