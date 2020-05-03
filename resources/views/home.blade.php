@@ -606,4 +606,47 @@
             </div>
         </article>
     </section>
+    
+<?php
+
+$id_user = \Auth::id();
+$data_check_result_test = App\Models\Manage\ResultTest::whereNull('point')->where('id_user', $id_user);
+$idresume=null;
+if(count($data_check_result_test->get()))
+    $idresume=$data_check_result_test->first()->idExam;
+?>
+@if($idresume)
+<form style="display:none" id="destroyForm" action="{{route('exam.destroy')}}" method="post">
+    @csrf()
+    <input type="submit" value="">    
+</form>
+<div class="modal fade" id="modalAlert" tabindex="-1" role="dialog" aria-labelledby="modalAlert" style="display: none;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <p class="modal-title">Thông báo</p>
+                </div>
+                <div class="modal-body fs15">
+                    <p class="i-content">Hệ thống nhận thấy bạn đang làm dở bài thi {{$idresume->name}}</p>
+                    <p class="i-content">Bạn có muốn tiếp tục làm bài không?</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="{{route('exam.index',['slug'=>$idresume->slug,'id'=>$idresume->id])}}"><button type="button" class="btn btn-success i-btn">Tiếp  tục</button></a>
+                    <button id="exitExam" class="btn btn-danger i-btn">Hủy bài thi</button>
+                    <button type="button" class="btn btn-primary i-btn" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>jQuery('#modalAlert').modal();</script>
+    <script>
+            jQuery(function($) {
+                $('#exitExam').on('click', function(e) {
+                e.preventDefault();
+                    $('#destroyForm').submit();
+            });
+        });
+    </script>
+@endif
 @endsection
