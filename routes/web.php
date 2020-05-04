@@ -34,7 +34,7 @@ Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
 Route::get('/callback/{provider}', 'SocialController@callback');
 
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
     Route::resource('genders', 'Manage\GenderController', ["as" => 'admin']);
     Route::resource('permissions', 'Manage\PermissionController', ["as" => 'admin']);
     Route::resource('grades', 'Manage\GradeController', ["as" => 'admin']);

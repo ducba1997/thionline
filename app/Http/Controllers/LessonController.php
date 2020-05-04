@@ -19,21 +19,24 @@ class LessonController extends Controller
     }
 
     public function showFullLesson($grade=null,$subject=null){
-        if(!$grade){
-            $grade='lop-6';
-        }
-        $data_grade=Grade::where('slug',$grade)->first();
-        if(!$subject){
-            $subjectItems=DB::table('subject')
-            ->select('subject.id as subject_id','subject.name as subject_name','subject.slug as subject_slug')
-            ->distinct()
-            ->join('lesson','lesson.id_subject','=','subject.id')
-            ->join('grade','grade.id','=','lesson.id_grade')
-            ->where('lesson.id_grade','=',$data_grade->id)
-            ->orderByRaw("RAND()");
-            if(count($subjectItems->get())==0)
-                return redirect('/');
-            $subject=$subjectItems->first()->subject_slug;
+        if(!$grade||!$subject){
+            if(!$grade){
+                $grade='lop-6';
+            }
+            $data_grade=Grade::where('slug',$grade)->first();
+            if(!$subject){
+                $subjectItems=DB::table('subject')
+                ->select('subject.id as subject_id','subject.name as subject_name','subject.slug as subject_slug')
+                ->distinct()
+                ->join('lesson','lesson.id_subject','=','subject.id')
+                ->join('grade','grade.id','=','lesson.id_grade')
+                ->where('lesson.id_grade','=',$data_grade->id)
+                ->orderByRaw("RAND()");
+                if(count($subjectItems->get())==0)
+                    return redirect('/');
+                $subject=$subjectItems->first()->subject_slug;
+            }
+            return redirect()->route('lesson.full',['grade'=>$grade,'subject'=>$subject]);
         }
         $data_check_grade=Grade::where('slug',$grade);
         if(count($data_check_grade->get())==0)
@@ -53,22 +56,26 @@ class LessonController extends Controller
     }
 
     public function showExamFull($grade=null,$subject=null){
-        if(!$grade){
-            $grade='lop-6';
+        if(!$grade||!$subject){
+            if(!$grade){
+                $grade='lop-6';
+            }
+            $data_grade=Grade::where('slug',$grade)->first();
+            if(!$subject){
+                $subjectItems=DB::table('subject')
+                ->select('subject.id as subject_id','subject.name as subject_name','subject.slug as subject_slug')
+                ->distinct()
+                ->join('exam','exam.id_subject','=','subject.id')
+                ->join('grade','grade.id','=','exam.id_grade')
+                ->where('exam.id_grade','=',$data_grade->id)
+                ->orderByRaw("RAND()");
+                if(count($subjectItems->get())==0)
+                    return redirect('/');
+                $subject=$subjectItems->first()->subject_slug;
+            }
+            return redirect()->route('exam.full',['grade'=>$grade,'subject'=>$subject]);
         }
-        $data_grade=Grade::where('slug',$grade)->first();
-        if(!$subject){
-            $subjectItems=DB::table('subject')
-            ->select('subject.id as subject_id','subject.name as subject_name','subject.slug as subject_slug')
-            ->distinct()
-            ->join('exam','exam.id_subject','=','subject.id')
-            ->join('grade','grade.id','=','exam.id_grade')
-            ->where('exam.id_grade','=',$data_grade->id)
-            ->orderByRaw("RAND()");
-            if(count($subjectItems->get())==0)
-                return redirect('/');
-            $subject=$subjectItems->first()->subject_slug;
-        }
+            
         $data_check_grade=Grade::where('slug',$grade);
         if(count($data_check_grade->get())==0)
             return abort('404');

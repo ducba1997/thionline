@@ -625,7 +625,7 @@ if(count($data_check_result_test->get()))
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">×</button>
-                    <p class="modal-title">Thông báo</p>
+                    <h5 class="modal-title">Thông báo</h5>
                 </div>
                 <div class="modal-body fs15">
                     <p class="i-content">Hệ thống nhận thấy bạn đang làm dở bài thi {{$idresume->name}}</p>
@@ -634,7 +634,7 @@ if(count($data_check_result_test->get()))
                 <div class="modal-footer">
                     <a href="{{route('exam.index',['slug'=>$idresume->slug,'id'=>$idresume->id])}}"><button type="button" class="btn btn-success i-btn">Tiếp  tục</button></a>
                     <button id="exitExam" class="btn btn-danger i-btn">Hủy bài thi</button>
-                    <button type="button" class="btn btn-primary i-btn" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-info i-btn" data-dismiss="modal">Đóng</button>
                 </div>
             </div>
         </div>
