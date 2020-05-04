@@ -59,3 +59,7 @@
     <a href="{{ route('admin.resultTestDetails.index') }}"><i class="fa fa-edit"></i><span>Chi tiết bài thi</span></a>
 </li>-->
 
+<li class="{{ Request::is('admin/assignments*') ? 'active' : '' }}">
+    <a href="{{ route('admin.assignments.index') }}"><i class="fa fa-edit"></i><span>Quản lý tài liệu</span></a>
+</li>
+

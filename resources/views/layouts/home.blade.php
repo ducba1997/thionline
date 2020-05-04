@@ -62,13 +62,13 @@
                                 <a href="{{URL('/de-thi/')}}">Đề thi</a>
                             </li>
                             <li class="menu ">
-                                <a href="https://hoc247.net/hoi-dap/lop-12/toan-hoc/">Hỏi Đáp</a>
+                                <a href="" onclick="return false;">Hỏi Đáp</a>
                             </li>
                             <li class="menu ">
-                                <a href="https://hoc247.net/tu-lieu/lop-12/">Tư Liệu</a>
+                                <a href="{{URL('/tai-lieu/')}}">Tư Liệu</a>
                             </li>
                             <li class="menu ">
-                                <a href="https://hoc247.net/playlist/lop-12/">VIDEO</a>
+                                <a href="" onclick="return false">VIDEO</a>
                             </li>
                         </ul>
                     </nav>

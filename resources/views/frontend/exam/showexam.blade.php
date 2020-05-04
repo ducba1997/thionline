@@ -75,7 +75,7 @@ if(count($data_check_result_test->get()))
                         <div class="i-bot">
                             <div class="row">
                                 <div class="col-md-3 col-xs-6 marginbot10">
-                                    <i class="far fa-file-alt marright5"></i> <?php $countquestion=count(App\Model\ExamDetail::where('id_exam',$value->exam_id)->get()); ?>
+                                    <i class="far fa-file-alt marright5"></i> <?php $countquestion=App\Model\ExamDetail::where('id_exam',$value->exam_id)->sum('count'); ?>
                                     {{$countquestion}} câu
                                 </div>
                                 <div class="col-md-3 col-xs-6 marginbot10">

@@ -7,10 +7,23 @@
 <!-- Slug Field -->
 <div class="form-group col-sm-6 hidden">
     {!! Form::label('slug', 'Slug:') !!}
-    {!! Form::text('slug', 'abc', ['class' => 'form-control']) !!}
+    {!! Form::text('slug', 'avc', ['class' => 'form-control']) !!}
 </div>
 
-<!-- Id Grade Field -->
+<!-- Description Field -->
+<div class="form-group col-sm-12 col-lg-12">
+    {!! Form::label('description', 'Mô tả:') !!}
+    {!! Form::textarea('description', null, ['class' => 'form-control', 'id'=>'editorDescription']) !!}
+</div>
+@push('scripts')
+    <script src="{{asset('js/ckeditor/ckeditor.js')}}"></script>
+    <script>
+        CKEDITOR.replace('editorDescription', {
+            filebrowserBrowseUrl: "{{ route('ckfinder_browser') }}"
+         } );
+    </script>
+    @include('ckfinder::setup')
+@endpush
 <?php
 
 use App\Models\Manage\Chapter;
@@ -42,37 +55,22 @@ $stt=array(
     {!! Form::select('id_chapter',$chapterItems, null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Image Field -->
-<div class="form-group col-sm-6 hidden">
-    {!! Form::label('image', 'Ảnh:') !!}
-    {!! Form::text('image', null, ['class' => 'form-control']) !!}
+<!-- Url Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('url', 'Tệp: ') !!}
+    {!! Form::file('url', null, ['class' => 'form-control']) !!}
 </div>
-
-<!-- Content Field -->
-<div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('content', 'Nội dung:') !!}
-    {!! Form::textarea('content', null, ['class' => 'form-control', 'id'=>'editorContent']) !!}
-</div>
-@push('scripts')
-    <script src="{{asset('js/ckeditor/ckeditor.js')}}"></script>
-    <script>
-        CKEDITOR.replace('editorContent', {
-            filebrowserBrowseUrl: "{{ route('ckfinder_browser') }}"
-         } );
-    </script>
-    @include('ckfinder::setup')
-@endpush
 
 <!-- Status Field -->
-
 <div class="form-group col-sm-6">
     {!! Form::label('status', 'Trạng thái:') !!}
     {!! Form::select('status',$stt, null, ['class' => 'form-control']) !!}
     </label>
 </div>
 
+
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Lưu', ['class' => 'btn btn-primary']) !!}
-    <a href="{{ route('admin.lessons.index') }}" class="btn btn-default">Đóng</a>
+    <a href="{{ route('admin.assignments.index') }}" class="btn btn-default">Đóng</a>
 </div>

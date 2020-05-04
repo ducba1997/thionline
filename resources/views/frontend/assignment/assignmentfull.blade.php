@@ -1,9 +1,9 @@
 @extends('layouts.home')
 @section('title')
-    Chương trình {{$data_subject->name}} {{$data_grade->name}}
+    Tài liệu học {{$data_subject->name}} {{$data_grade->name}}
 @endsection
 @section('submenu')
-    {{URL('/chuong-trinh/')}}
+    {{URL('/tai-lieu/')}}
 @endsection
 @section('content')
 <section class="wrapbanner2 hidden-xs">
@@ -31,14 +31,14 @@
                             <?php $subjectItems= DB::table('subject')
                                     ->select('subject.id as subject_id','subject.name as subject_name','subject.slug as subject_slug')
                                     ->distinct()
-                                    ->join('lesson','lesson.id_subject','=','subject.id')
-                                    ->join('grade','grade.id','=','lesson.id_grade')
-                                    ->where('lesson.id_grade','=',$data_grade->id)
+                                    ->join('assignment','assignment.id_subject','=','subject.id')
+                                    ->join('grade','grade.id','=','assignment.id_grade')
+                                    ->where('assignment.id_grade','=',$data_grade->id)
                                     ->get();
                                     ?>
                                 @foreach($subjectItems as $value)
                                 <li class="{{ Request::is('chuong-trinh/'.$data_grade->slug.'/'.$value->subject_slug.'*') ? 'act' : '' }}">
-                                    <a href="{{route('lesson.full',['grade'=>$data_grade->slug,'subject'=>$value->subject_slug])}}">
+                                    <a href="{{route('assignment.full',['grade'=>$data_grade->slug,'subject'=>$value->subject_slug])}}">
                                         {{$value->subject_name}}</a>
                                 </li>
                                 @endforeach
@@ -57,17 +57,17 @@
 								</h2>
                             </div>
                             <div class="i-col-2 col-inline-block" style="width: 66%;">
-                                <?php $lessonItems = DB::table('chapter')
-                                    ->select('lesson.id as lesson_id','lesson.name as lesson_name','lesson.slug as lesson_slug')
-                                    ->join('lesson','lesson.id_chapter','=','chapter.id')
-                                    ->where('lesson.id_grade','=',$data_grade->id)
-                                    ->where('lesson.id_subject','=',$data_subject->id)
+                                <?php $assignmentItems = DB::table('chapter')
+                                    ->select('assignment.id as assignment_id','assignment.name as assignment_name','assignment.slug as assignment_slug')
+                                    ->join('assignment','assignment.id_chapter','=','chapter.id')
+                                    ->where('assignment.id_grade','=',$data_grade->id)
+                                    ->where('assignment.id_subject','=',$data_subject->id)
                                     ->where('chapter.id','=',$value->chapter_id)
-                                    ->where('lesson.status','=',1)
+                                    ->where('assignment.status','=',1)
                                     ->get(); ?>
-                                @foreach($lessonItems as $valuelesson)
+                                @foreach($assignmentItems as $valueassignment)
                                 <p class="i-des">
-                                    <a href="{{route('lesson',['slug'=>$valuelesson->lesson_slug,'id'=>$valuelesson->lesson_id])}}"><span>■</span>{{$valuelesson->lesson_name}}</a>
+                                    <a href="{{route('assignment',['slug'=>$valueassignment->assignment_slug,'id'=>$valueassignment->assignment_id])}}"><span>■</span>{{$valueassignment->assignment_name}}</a>
                                 </p>
                                 @endforeach
                             </div>

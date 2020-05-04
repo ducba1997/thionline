@@ -26,6 +26,10 @@ Route::post('bai-thi/calculatepoint','ExamController@calculatePoint')->name('exa
 Route::get('bai-thi/ket-qua/ket-qua-thi-{id}.html','ExamController@resultExam')->name('exam.result');
 Route::get('bai-thi/xem-lai-{id}.html','ExamController@reviewExam')->name('exam.review');
 
+Route::get('tai-lieu/{slug}I{id}.html', 'AssignmentController@index')->name('assignment');
+Route::get('tai-lieu/{grade?}/{subject?}','AssignmentController@showAssignmentFull')->name('assignment.full');
+Route::get('tai-lieu/tai-tai-lieu-{id}.html','AssignmentController@download')->name('assignment.download')->middleware('auth');
+Route::get('tai-lieu/xem-tai-lieu-{id}.html','AssignmentController@viewonline')->name('assignment.viewonline')->middleware('auth');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -34,7 +38,7 @@ Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
 Route::get('/callback/{provider}', 'SocialController@callback');
 
 
-Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
+Route::group(['prefix' => 'admin','middleware' => 'adminauth'], function () {
     Route::resource('genders', 'Manage\GenderController', ["as" => 'admin']);
     Route::resource('permissions', 'Manage\PermissionController', ["as" => 'admin']);
     Route::resource('grades', 'Manage\GradeController', ["as" => 'admin']);
@@ -49,4 +53,9 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
     Route::resource('resultTests', 'Manage\ResultTestController', ["as" => 'admin']);
     Route::resource('resultTestDetails', 'Manage\ResultTestDetailController', ["as" => 'admin']);
 
+});
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Route::resource('assignments', 'Manage\AssignmentController', ["as" => 'admin']);
 });

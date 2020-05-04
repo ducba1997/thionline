@@ -1,4 +1,7 @@
 @extends('layouts.home')
+@section('submenu')
+{{URL('/de-thi/')}}
+@endsection
 @section('title')
 {{$data_exam['name']}}
 @endsection

@@ -1,4 +1,7 @@
 @extends('layouts.home')
+@section('submenu')
+{{URL('/bai-hoc/')}}
+@endsection
 @section('title')
     {{$data_lesson->name}}
     {{$data_lesson->subject->name}}

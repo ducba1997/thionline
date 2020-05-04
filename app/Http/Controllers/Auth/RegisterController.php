@@ -72,7 +72,8 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'birthday' => date("Y-m-d",strtotime($data['birthday'])),
             'id_gender' => $data['gender'],
-            'id_permission' => '1',
+            'id_permission' => '3',
+            'active' => '1',
             'address' => $data['address'],
         ]);
         $email_data = array(

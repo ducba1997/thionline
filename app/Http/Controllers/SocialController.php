@@ -31,7 +31,8 @@ class SocialController extends Controller
                 'password' => Hash::make('123456789'),
                 'birthday' => date("Y-m-d",strtotime('20190503')),
                 'id_gender' => '1',
-                'id_permission' => '1',
+                'id_permission' => '3',
+                'active' => '1'
             ]);
         }
         return $user;

@@ -28,7 +28,9 @@ class AddActiveToUsers extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->dropIfExists('active');
+            $table->dropIfExists('provider');
+            $table->dropIfExists('provider_id');
         });
     }
 }
