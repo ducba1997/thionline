@@ -52,6 +52,11 @@
                         {{$data_lesson->name}}
                     </p>
                     {!!$data_lesson->content!!}
+                    <div class="row">
+                        <div class="col-sm-12">
+                        <div class="fb-comments" data-href="{{Request::url()}}" data-width="100%" data-numposts="5" data-width=""></div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
