@@ -66,10 +66,12 @@
     <div class="panel panel-default" style="margin: 0px 15px 0px 15px">
     <div class="panel-body">
         <section class="content-header">
-            <h1 class="pull-left">Exam Details</h1>
-        <h1 class="pull-right">
-           <a class="btn btn-success pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{{ route('admin.examDetails.create') }}"><i class="fa fa-fw fa-plus"></i>&nbspThêm mới</a>
-        </h1>
+        @if(Request::get('exam'))
+           <?php $valueExam=\App\Models\Manage\Exam::where('id',Request::get('exam'))->first(); ?>
+              <h1 class="pull-left">{{$valueExam->name}}</h1>
+        @else
+            <h1 class="pull-left">Đề thi chi tiết</h1>
+        @endif
         </section>
     </div>
 </div>
@@ -80,6 +82,7 @@
 
         <div class="clearfix"></div>
         <div class="box box-primary">
+           
             <div class="box-body">
                     @include('backend.exam_details.table')
             </div>

@@ -6,8 +6,11 @@ use App\Http\Requests\Manage\CreateQuestionRequest;
 use App\Http\Requests\Manage\UpdateQuestionRequest;
 use App\Repositories\Manage\QuestionRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Imports\QuestionImport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use Flash;
+use Laracasts\Flash\Flash as FlashFlash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
@@ -30,6 +33,9 @@ class QuestionController extends AppBaseController
     public function index(Request $request)
     {
         $this->questionRepository->pushCriteria(new RequestCriteria($request));
+        if($request->exam)
+            $questions = $this->questionRepository->where('id_exam',$request->exam)->get();
+        else
         $questions = $this->questionRepository->all();
 
         return view('backend.questions.index')
@@ -60,10 +66,22 @@ class QuestionController extends AppBaseController
         $question = $this->questionRepository->create($input);
 
         Flash::success('Thêm mới thành công');
-
-        return redirect(route('admin.questions.index'));
+        if($request->exam)
+            return redirect(route('admin.questions.index').'?exam='.$request->exam);
+        else
+            return redirect(route('admin.questions.index'));
     }
-
+    public function getImport(){
+        return view('backend.questions.importexcel');
+    } 
+    public function postImport(Request $request){
+        $import = Excel::import(new QuestionImport($request->id_exam,$request->id_level_question), request()->file('fileExcel'));
+        Flash::success('Thêm dữ liệu từ file thành công');
+        if($request->exam)
+            return redirect(route('admin.questions.index').'?exam='.$request->exam);
+        else
+            return redirect(route('admin.questions.index'));
+    }
     /**
      * Display the specified Question.
      *
@@ -115,7 +133,6 @@ class QuestionController extends AppBaseController
     public function update($id, UpdateQuestionRequest $request)
     {
         $question = $this->questionRepository->findWithoutFail($id);
-
         if (empty($question)) {
             Flash::error('Question not found');
 
@@ -125,8 +142,10 @@ class QuestionController extends AppBaseController
         $question = $this->questionRepository->update($request->all(), $id);
 
         Flash::success('Cập nhật dữ liệu thành công');
-
-        return redirect(route('admin.questions.index'));
+        if($request->exam)
+            return redirect(route('admin.questions.index').'?exam='.$request->exam);
+        else
+            return redirect(route('admin.questions.index'));
     }
 
     /**
@@ -136,7 +155,7 @@ class QuestionController extends AppBaseController
      *
      * @return Response
      */
-    public function destroy($id)
+    public function destroy($id,Request $req)
     {
         $question = $this->questionRepository->findWithoutFail($id);
 
@@ -150,6 +169,9 @@ class QuestionController extends AppBaseController
 
         Flash::success('Đã xóa dữ liệu thành công.');
 
-        return redirect(route('admin.questions.index'));
+        if($req->exam)
+            return redirect(route('admin.questions.index').'?exam='.$req->exam);
+        else
+            return redirect(route('admin.questions.index'));
     }
 }

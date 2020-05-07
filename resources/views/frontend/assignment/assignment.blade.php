@@ -9,10 +9,11 @@
 {{$data_assignment->idChapter->name}}
 @endsection
 @section('content')
-@if(Auth::check())
 <?php $arr= explode(".",$data_assignment->url); 
     $extensionFile=$arr[1];
 ?>
+@if(Auth::check())
+
 @if($extensionFile=='pdf')
 <div class="modal fade .modal-noborder modal-dat-cauhoi in" id="modal-document-viewonline" tabindex="-1" role="dialog" aria-labelledby="modal-document-viewonline">
 	<!--<div class="modal-full">-->
@@ -82,6 +83,14 @@
                         </a>
                     </div>
                     @else
+                    @if($extensionFile=='pdf')
+                    <div class="item-tab item-tab-2">
+                        <span class="i-view" data-toggle="modal" data-target="#modal-document-download">
+                            <i class="fa fa-eye hidden-xs" aria-hidden="true"></i>
+                            <span class="hidden-xs">Xem online</span>
+                        </span>
+                    </div>
+                    @endif
                     <div class="item-tab item-tab-2">
                         <span class="i-download" data-toggle="modal" data-target="#modal-document-download">
                             <i class="fa fa-download hidden-xs" aria-hidden="true"></i> Tải về</span>

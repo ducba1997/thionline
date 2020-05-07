@@ -6,6 +6,7 @@ use App\Http\Requests\Manage\CreateExamRequest;
 use App\Http\Requests\Manage\UpdateExamRequest;
 use App\Repositories\Manage\ExamRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Model\ExamDetail;
 use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
@@ -56,13 +57,33 @@ class ExamController extends AppBaseController
      */
     public function store(CreateExamRequest $request)
     {
-        $id_user = Auth::id();
-        $request->merge(['slug' => str_slug($request->name)]);
-        $request->merge(['id_users' => str_slug($id_user)]);
-        $input = $request->all();
-
+        $id_user = \Auth::id();
+        $input = [];
+        $input['name']=$request->name;
+        $input['slug']=str_slug($request->name);
+        $input['id_users']=$id_user;
+        $input['id_subject']=$request->id_subject;
+        $input['id_grade']=$request->id_grade;
+        $input['id_chapter']=$request->id_chapter;
+        $input['description']=$request->description;
+        $input['time_to_do']=$request->time_to_do;
+        $input['allow_review_answer']=$request->allow_review_answer;
+        $input['status']=$request->status;
         $exam = $this->examRepository->create($input);
-
+        $total_count_question = 0;
+        foreach($request->question as $value){
+            $total_count_question+=$value;
+        }
+        foreach($request->question as $key => $value){
+            if($value){
+                $examDetail=new ExamDetail;
+                $examDetail->id_level_question=$key;
+                $examDetail->id_exam= $exam->id;
+                $examDetail->count=$value;
+                $examDetail->percent=100/$total_count_question*$value;
+                $examDetail->save();
+            }
+        }
         Flash::success('Thêm mới thành công');
 
         return redirect(route('admin.exams.index'));
@@ -126,10 +147,34 @@ class ExamController extends AppBaseController
             return redirect(route('admin.exams.index'));
         }
 
-        $id_user = Auth::id();
-        $request->merge(['slug' => str_slug($request->name)]);
-        $request->merge(['id_users' => str_slug($id_user)]);
-        $exam = $this->examRepository->update($request->all(), $id);
+        $id_user = \Auth::id();
+        $input = [];
+        $input['name']=$request->name;
+        $input['slug']=str_slug($request->name);
+        $input['id_users']=$id_user;
+        $input['id_subject']=$request->id_subject;
+        $input['id_grade']=$request->id_grade;
+        $input['id_chapter']=$request->id_chapter;
+        $input['description']=$request->description;
+        $input['time_to_do']=$request->time_to_do;
+        $input['allow_review_answer']=$request->allow_review_answer;
+        $input['status']=$request->status;
+        $total_count_question = 0;
+        ExamDetail::where('id_exam',$exam->id)->delete();
+        foreach($request->question as $value){
+            $total_count_question+=$value;
+        }
+        foreach($request->question as $key => $value){
+            if($value){
+                $examDetail=new ExamDetail;
+                $examDetail->id_level_question=$key;
+                $examDetail->id_exam= $exam->id;
+                $examDetail->count=$value;
+                $examDetail->percent=100/$total_count_question*$value;
+                $examDetail->save();
+            }
+        }
+        $exam = $this->examRepository->update($input, $id);
 
         Flash::success('Cập nhật dữ liệu thành công');
 

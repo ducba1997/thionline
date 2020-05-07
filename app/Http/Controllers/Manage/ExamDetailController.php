@@ -30,7 +30,10 @@ class ExamDetailController extends AppBaseController
     public function index(Request $request)
     {
         $this->examDetailRepository->pushCriteria(new RequestCriteria($request));
-        $examDetails = $this->examDetailRepository->all();
+        if($request->exam)
+            $examDetails = $this->examDetailRepository->where('id_exam',$request->exam)->get();
+        else
+            $examDetails = $this->examDetailRepository->all();
 
         return view('backend.exam_details.index')
             ->with('examDetails', $examDetails);
@@ -126,7 +129,7 @@ class ExamDetailController extends AppBaseController
 
         Flash::success('Cập nhật dữ liệu thành công');
 
-        return redirect(route('admin.examDetails.index'));
+        return redirect(route('admin.examDetails.index').'?exam='.$request->id_exam);
     }
 
     /**

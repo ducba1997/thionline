@@ -21,9 +21,11 @@ class CreateAssignmentTable extends Migration
             $table->unsignedBigInteger('id_grade');
             $table->unsignedBigInteger('id_subject');
             $table->unsignedBigInteger('id_chapter');
-            $table->foreign('id_grade')->references('id')->on('grade');
-            $table->foreign('id_subject')->references('id')->on('subject');
-            $table->foreign('id_chapter')->references('id')->on('chapter');
+            $table->unsignedBigInteger('id_users');
+            $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id_grade')->references('id')->on('grade')->onDelete('cascade');;
+            $table->foreign('id_subject')->references('id')->on('subject')->onDelete('cascade');;
+            $table->foreign('id_chapter')->references('id')->on('chapter')->onDelete('cascade');;
             $table->string('url');
             $table->tinyInteger('status');
             $table->timestamps();

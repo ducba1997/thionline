@@ -65,12 +65,22 @@
     
     <div class="panel panel-default" style="margin: 0px 15px 0px 15px">
     <div class="panel-body">
+        @if(Request::get('exam'))
+        <?php $examItems=App\Models\Manage\Exam::where('id',Request::get('exam'))->first() ?>
         <section class="content-header">
-            <h1 class="pull-left">Questions</h1>
+            <h1 class="pull-left" style="width: 600px">Danh sách câu hỏi đề thi {{$examItems->name}}</h1>
+        <h1 class="pull-right">
+           <a class="btn btn-success pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{{ route('admin.questions.create') }}?exam={{$examItems->id}}"><i class="fa fa-fw fa-plus"></i>&nbspThêm mới</a>
+        </h1>
+        </section>
+        @else
+        <section class="content-header">
+            <h1 class="pull-left">Danh sách câu hỏi</h1>
         <h1 class="pull-right">
            <a class="btn btn-success pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{{ route('admin.questions.create') }}"><i class="fa fa-fw fa-plus"></i>&nbspThêm mới</a>
         </h1>
         </section>
+        @endif
     </div>
 </div>
     <div class="content">

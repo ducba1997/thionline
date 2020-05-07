@@ -108,6 +108,9 @@ class ExamController extends Controller
             $total_point+=$point_per_answer;
         }
         $total_point=round($total_point,2);
+        $data_exam=Exam::where('id',$data_check_result_test->first()->id_exam)->first();
+        $time_done=$data_exam->time_to_do-$data_check_result_test->first()->time_remaining;
+        $data_check_result_test->update(['time_to_do'=>$time_done]);
         $data_check_result_test->update(['point'=>$total_point]);
         return redirect()->route('exam.result',['id'=>$id_data_check_result_test]);
     }

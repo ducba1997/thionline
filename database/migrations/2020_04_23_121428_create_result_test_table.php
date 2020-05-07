@@ -16,9 +16,9 @@ class CreateResultTestTable extends Migration
         Schema::create('result_test', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_exam');
-            $table->foreign('id_exam')->references('id')->on('exam');
+            $table->foreign('id_exam')->references('id')->on('exam')->onDelete('cascade');
             $table->unsignedBigInteger('id_user');
-            $table->foreign('id_user')->references('id')->on('users');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->dateTime('time_start');
             $table->integer('time_to_do')->nullable();
             $table->double('point')->nullable();

@@ -2,6 +2,7 @@
 
 use App\Models\Manage\Chapter;
 use App\Models\Manage\Grade;
+
 use App\Models\Manage\Subject;
 
 $gradeItems= Grade::all()->pluck('name','id');
@@ -16,6 +17,7 @@ $tt=array(
     '0' => 'Không cho phép'
 )
 ?>
+
 
 <!-- Id Grade Field -->
 <div class="form-group col-sm-6">

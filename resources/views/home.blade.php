@@ -1,5 +1,7 @@
 @extends('layouts.home')
-
+@section('submenu')
+{{URL('/chuong-trinh/')}}
+@endsection
 @section('title','Cộng đồng ôn tập và luyện thi trực tuyến')
 @section('content')
 <section class="main">
@@ -39,7 +41,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{URL('/bai-hoc/')}}" >
+                            <a href="{{URL('/chuong-trinh/')}}" >
                                 <img src="upload/business.png?id=1">
                                 <p class="mau1">300K+</p>
                                 <p>Bài học</p>
@@ -192,138 +194,19 @@
                             <div class="col-inline-block vermid col-md-12 col-xs-12 padbot10">
                                 <div class="b-content">
                                     <ul class="list-thionl-index" id="list-thionl-index" style="overflow: hidden; width: 100%; height: 260px;">
-                                        <li class="item">
-                                            <div class="col-md-2 hidden-xs fleft">
-                                                <img onerror="this.src='https://hoc247.net/image/tests/nopic.jpg'" src="https://hoc247.net/image/grouptest/2019/20190307/470x246/591551924587.jpg" alt="Bộ đề thi thử THPT Quốc gia năm 2019 môn GDCD có lời giải chi tiết" title="Bộ đề thi thử THPT Quốc gia năm 2019 môn GDCD có lời giải chi tiết">
-                                            </div>
-                                            <div class="col-md-10 col-xs-12 fright">
-                                                <a class="i-des" href="https://hoc247.net/bo-de-thi-thu-thpt-quoc-gia-nam-2019-mon-gdcd-co-loi-giai-chi-tiet-gtid11.html" target="_blank">Bộ đề thi thử THPT Quốc gia năm 2019 môn GDCD có lời giải chi tiết</a>
+                                    <?php $examItems=\App\Models\Manage\Exam::inRandomOrder()->limit(16)->get(); ?>
+                                    @foreach($examItems as $value)    
+                                    <li class="item">
+                                            <div class="col-md-12 col-xs-12 fright">
+                                                <a class="i-des" href="{{route('exam.index',['slug'=>$value->slug,'id'=>$value->id])}}" target="_blank">{{$value->name}}</a>
                                                 <div class="i-tool">
-                                                    <i class="far fa-file-alt marright5"></i> 18 đề &nbsp;
-                                                    <i class="far fa-edit marright5"></i> 3812 lượt thi
+                                                <?php $countquestion=App\Model\ExamDetail::where('id_exam',$value->id)->sum('count'); ?>
+                                                    <i class="far fa-file-alt marright5"></i> {{$countquestion}} câu &nbsp;
+                                                    <i class="far fa-edit marright5"></i> Thời gian: {{gmdate("i", $value->time_to_do)." p "}} 
                                                 </div>
                                             </div>
                                         </li>
-                                        <li class="item">
-                                            <div class="col-md-2 hidden-xs fleft">
-                                                <img onerror="this.src='https://hoc247.net/image/tests/nopic.jpg'" src="https://hoc247.net/image/tests/nopic.jpg" alt="Bộ đề thi thử THPT Quốc gia năm 2020 môn Vật Lý có lời giải chi tiết" title="Bộ đề thi thử THPT Quốc gia năm 2020 môn Vật Lý có lời giải chi tiết">
-                                            </div>
-                                            <div class="col-md-10 col-xs-12 fright">
-                                                <a class="i-des" href="https://hoc247.net/bo-de-thi-thu-thpt-quoc-gia-nam-2020-mon-vat-ly-co-loi-giai-chi-tiet-gtid594.html" target="_blank">Bộ đề thi thử THPT Quốc gia năm 2020 môn Vật Lý có lời giải chi tiết</a>
-                                                <div class="i-tool">
-                                                    <i class="far fa-file-alt marright5"></i> 32 đề &nbsp;
-                                                    <i class="far fa-edit marright5"></i> 614 lượt thi
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="item">
-                                            <div class="col-md-2 hidden-xs fleft">
-                                                <img onerror="this.src='https://hoc247.net/image/tests/nopic.jpg'" src="https://hoc247.net/image/grouptest/2019/20191104/470x246/4231572919666.jpg" alt="Bộ đề thi thử THPT Quốc gia năm 2020 môn Hóa học có lời giải chi tiết" title="Bộ đề thi thử THPT Quốc gia năm 2020 môn Hóa học có lời giải chi tiết">
-                                            </div>
-                                            <div class="col-md-10 col-xs-12 fright">
-                                                <a class="i-des" href="https://hoc247.net/bo-de-thi-thu-thpt-quoc-gia-nam-2020-mon-hoa-hoc-co-loi-giai-chi-tiet-gtid678.html" target="_blank">Bộ đề thi thử THPT Quốc gia năm 2020 môn Hóa học có lời giải chi tiết</a>
-                                                <div class="i-tool">
-                                                    <i class="far fa-file-alt marright5"></i> 38 đề &nbsp;
-                                                    <i class="far fa-edit marright5"></i> 185 lượt thi
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="item">
-                                            <div class="col-md-2 hidden-xs fleft">
-                                                <img onerror="this.src='https://hoc247.net/image/tests/nopic.jpg'" src="https://hoc247.net/image/grouptest/2019/20191202/470x246/7131575424615.jpg" alt="Bộ đề thi thử THPT Quốc gia năm 2020 môn Địa lý có lời giải chi tiết" title="Bộ đề thi thử THPT Quốc gia năm 2020 môn Địa lý có lời giải chi tiết">
-                                            </div>
-                                            <div class="col-md-10 col-xs-12 fright">
-                                                <a class="i-des" href="https://hoc247.net/bo-de-thi-thu-thpt-quoc-gia-nam-2020-mon-dia-ly-co-loi-giai-chi-tiet-gtid694.html" target="_blank">Bộ đề thi thử THPT Quốc gia năm 2020 môn Địa lý có lời giải chi tiết</a>
-                                                <div class="i-tool">
-                                                    <i class="far fa-file-alt marright5"></i> 23 đề &nbsp;
-                                                    <i class="far fa-edit marright5"></i> 545 lượt thi
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="item">
-                                            <div class="col-md-2 hidden-xs fleft">
-                                                <img onerror="this.src='https://hoc247.net/image/tests/nopic.jpg'" src="https://hoc247.net/image/grouptest/2020/20200104/470x246/5301585302888.jpg" alt="Bộ đề thi thử THPT Quốc gia năm 2020 môn Sinh học có lời giải chi tiết" title="Bộ đề thi thử THPT Quốc gia năm 2020 môn Sinh học có lời giải chi tiết">
-                                            </div>
-                                            <div class="col-md-10 col-xs-12 fright">
-                                                <a class="i-des" href="https://hoc247.net/bo-de-thi-thu-thpt-quoc-gia-nam-2020-mon-sinh-hoc-co-loi-giai-chi-tiet-gtid728.html" target="_blank">Bộ đề thi thử THPT Quốc gia năm 2020 môn Sinh học có lời giải chi tiết</a>
-                                                <div class="i-tool">
-                                                    <i class="far fa-file-alt marright5"></i> 20 đề &nbsp;
-                                                    <i class="far fa-edit marright5"></i> 90 lượt thi
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="item">
-                                            <div class="col-md-2 hidden-xs fleft">
-                                                <img onerror="this.src='https://hoc247.net/image/tests/nopic.jpg'" src="https://hoc247.net/image/grouptest/2020/20200210/470x246/1121585303037.jpg" alt="Bộ đề kiểm tra 1 tiết HK2 môn Vật lý lớp 12 năm 2020" title="Bộ đề kiểm tra 1 tiết HK2 môn Vật lý lớp 12 năm 2020">
-                                            </div>
-                                            <div class="col-md-10 col-xs-12 fright">
-                                                <a class="i-des" href="https://hoc247.net/bo-de-kiem-tra-1-tiet-hk2-mon-vat-ly-lop-12-nam-2020-gtid729.html" target="_blank">Bộ đề kiểm tra 1 tiết HK2 môn Vật lý lớp 12 năm 2020</a>
-                                                <div class="i-tool">
-                                                    <i class="far fa-file-alt marright5"></i> 28 đề &nbsp;
-                                                    <i class="far fa-edit marright5"></i> 29 lượt thi
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="item">
-                                            <div class="col-md-2 hidden-xs fleft">
-                                                <img onerror="this.src='https://hoc247.net/image/tests/nopic.jpg'" src="https://hoc247.net/image/grouptest/2020/20200210/470x246/7741585303236.jpg" alt="Bộ đề kiểm tra 1 tiết HK2 môn Công Nghệ 12 năm 2020" title="Bộ đề kiểm tra 1 tiết HK2 môn Công Nghệ 12 năm 2020">
-                                            </div>
-                                            <div class="col-md-10 col-xs-12 fright">
-                                                <a class="i-des" href="https://hoc247.net/bo-de-kiem-tra-1-tiet-hk2-mon-cong-nghe-12-nam-2020-gtid730.html" target="_blank">Bộ đề kiểm tra 1 tiết HK2 môn Công Nghệ 12 năm 2020</a>
-                                                <div class="i-tool">
-                                                    <i class="far fa-file-alt marright5"></i> 2 đề &nbsp;
-                                                    <i class="far fa-edit marright5"></i> 0 lượt thi
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="item">
-                                            <div class="col-md-2 hidden-xs fleft">
-                                                <img onerror="this.src='https://hoc247.net/image/tests/nopic.jpg'" src="https://hoc247.net/image/grouptest/2020/20200302/470x246/2131585536450.jpg" alt="Bộ đề thi thử THPT Quốc gia năm 2020 môn Toán có lời giải chi tiết" title="Bộ đề thi thử THPT Quốc gia năm 2020 môn Toán có lời giải chi tiết">
-                                            </div>
-                                            <div class="col-md-10 col-xs-12 fright">
-                                                <a class="i-des" href="https://hoc247.net/bo-de-thi-thu-thpt-quoc-gia-nam-2020-mon-toan-co-loi-giai-chi-tiet-gtid752.html" target="_blank">Bộ đề thi thử THPT Quốc gia năm 2020 môn Toán có lời giải chi tiết</a>
-                                                <div class="i-tool">
-                                                    <i class="far fa-file-alt marright5"></i> 7 đề &nbsp;
-                                                    <i class="far fa-edit marright5"></i> 409 lượt thi
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="item">
-                                            <div class="col-md-2 hidden-xs fleft">
-                                                <img onerror="this.src='https://hoc247.net/image/tests/nopic.jpg'" src="https://hoc247.net/image/grouptest/2020/20200303/470x246/4981585536636.jpg" alt="Bộ đề kiểm tra 1 tiết HK2 môn Sinh học lớp 12 năm 2020" title="Bộ đề kiểm tra 1 tiết HK2 môn Sinh học lớp 12 năm 2020">
-                                            </div>
-                                            <div class="col-md-10 col-xs-12 fright">
-                                                <a class="i-des" href="https://hoc247.net/bo-de-kiem-tra-1-tiet-hk2-mon-sinh-hoc-lop-12-nam-2020-gtid755.html" target="_blank">Bộ đề kiểm tra 1 tiết HK2 môn Sinh học lớp 12 năm 2020</a>
-                                                <div class="i-tool">
-                                                    <i class="far fa-file-alt marright5"></i> 5 đề &nbsp;
-                                                    <i class="far fa-edit marright5"></i> 4 lượt thi
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="item">
-                                            <div class="col-md-2 hidden-xs fleft">
-                                                <img onerror="this.src='https://hoc247.net/image/tests/nopic.jpg'" src="https://hoc247.net/image/grouptest/2020/20200303/470x246/1561585536950.jpg" alt="Bộ đề kiểm tra 1 tiết HK2 môn Địa lý lớp 12 năm 2020" title="Bộ đề kiểm tra 1 tiết HK2 môn Địa lý lớp 12 năm 2020">
-                                            </div>
-                                            <div class="col-md-10 col-xs-12 fright">
-                                                <a class="i-des" href="https://hoc247.net/bo-de-kiem-tra-1-tiet-hk2-mon-dia-ly-lop-12-nam-2020-gtid759.html" target="_blank">Bộ đề kiểm tra 1 tiết HK2 môn Địa lý lớp 12 năm 2020</a>
-                                                <div class="i-tool">
-                                                    <i class="far fa-file-alt marright5"></i> 2 đề &nbsp;
-                                                    <i class="far fa-edit marright5"></i> 8 lượt thi
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="item">
-                                            <div class="col-md-2 hidden-xs fleft">
-                                                <img onerror="this.src='https://hoc247.net/image/tests/nopic.jpg'" src="https://hoc247.net/image/grouptest/2020/20200401/470x246/7971587110223.jpg" alt="Bộ đề kiểm tra 1 tiết HK2 môn Toán lớp 12 năm 2020" title="Bộ đề kiểm tra 1 tiết HK2 môn Toán lớp 12 năm 2020">
-                                            </div>
-                                            <div class="col-md-10 col-xs-12 fright">
-                                                <a class="i-des" href="https://hoc247.net/bo-de-kiem-tra-1-tiet-hk2-mon-toan-lop-12-nam-2020-gtid764.html" target="_blank">Bộ đề kiểm tra 1 tiết HK2 môn Toán lớp 12 năm 2020</a>
-                                                <div class="i-tool">
-                                                    <i class="far fa-file-alt marright5"></i> 3 đề &nbsp;
-                                                    <i class="far fa-edit marright5"></i> 4 lượt thi
-                                                </div>
-                                            </div>
-                                        </li>
+                                        @endforeach
                                     </ul>
                                 </div>
                                 <script>

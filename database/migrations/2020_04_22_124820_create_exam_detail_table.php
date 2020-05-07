@@ -16,9 +16,9 @@ class CreateExamDetailTable extends Migration
         Schema::create('exam_detail', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_exam');
-            $table->foreign('id_exam')->references('id')->on('exam');
+            $table->foreign('id_exam')->references('id')->on('exam')->onDelete('cascade');
             $table->unsignedBigInteger('id_level_question');
-            $table->foreign('id_level_question')->references('id')->on('level_question');
+            $table->foreign('id_level_question')->references('id')->on('level_question')->onDelete('cascade');
             $table->integer('count');
             $table->double('percent');
             $table->timestamps();

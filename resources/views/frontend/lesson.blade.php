@@ -1,6 +1,6 @@
 @extends('layouts.home')
 @section('submenu')
-{{URL('/bai-hoc/')}}
+{{URL('/chuong-trinh/')}}
 @endsection
 @section('title')
     {{$data_lesson->name}}

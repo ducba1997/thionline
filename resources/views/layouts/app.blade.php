@@ -36,7 +36,7 @@
         <header class="main-header">
 
             <!-- Logo -->
-            <a href="#" class="logo">
+            <a href="{{URL('/')}}" class="logo">
                 <b>Học Vui :)) </b>
             </a>
 
@@ -72,7 +72,7 @@
                             <!-- Menu Toggle Button -->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <!-- The user image in the navbar-->
-                                <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg" class="user-image" alt="User Image" />
+                                <img src="{{asset('upload/avatar/'.Auth::user()->avatar)}}" style="width: 25px;height: 25px;"  class="user-image" alt="User Image" />
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                 <span class="hidden-xs">{{ Auth::user()->name }}</span>
                                 <i class="fa fa fa-angle-down"></i>
@@ -80,7 +80,7 @@
                             <ul class="dropdown-menu">
                                 <!-- The user image in the menu -->
                                 <li class="user-header">
-                                    <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg" class="img-circle" alt="User Image" />
+                                    <img src="{{asset('upload/avatar/'.Auth::user()->avatar)}}" style="width: 90px;height: 90px;"  class="img-circle" alt="User Image" />
                                     <p>
                                         {{ Auth::user()->name }}
                                         <small>Thành viên từ tháng {{ Auth::user()->created_at->format('m / Y') }}</small>
@@ -89,7 +89,7 @@
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">Hồ sơ</a>
+                                        <a href="{{route('profile.infoprofile')}}" class="btn btn-default btn-flat">Hồ sơ</a>
                                     </div>
                                     <div class="pull-right">
                                         <a href="{{ url('/logout') }}" class="btn btn-default btn-flat" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -116,7 +116,7 @@
 
         <!-- Main Footer -->
         <footer class="main-footer" style="max-height: 100px;text-align: center">
-            <strong>Copyright © 2016 <a href="#">Company</a>.</strong> All rights reserved.
+            <strong>Copyright © {{Carbon\Carbon::now()->year}} <a href="#">Company</a>.</strong> All rights reserved.
         </footer>
 
     </div>

@@ -17,8 +17,8 @@ class CreateResultTestDetailTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_result_test');
             $table->unsignedBigInteger('id_question');
-            $table->foreign('id_result_test')->references('id')->on('result_test');
-            $table->foreign('id_question')->references('id')->on('question');
+            $table->foreign('id_result_test')->references('id')->on('result_test')->onDelete('cascade');
+            $table->foreign('id_question')->references('id')->on('question')->onDelete('cascade');
             $table->string('answer')->nullable();
             $table->timestamps();
         });

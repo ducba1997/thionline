@@ -2,9 +2,12 @@
 
 @section('content')
     <section class="content-header">
-        <h1>
-            Exam Detail
-        </h1>
+        @if(Request::get('exam'))
+           <?php $valueExam=\App\Models\Manage\Exam::where('id',Request::get('exam'))->first(); ?>
+              <h1 >{{$valueExam->name}}</h1>
+        @else
+            <h1>Đề thi chi tiết</h1>
+        @endif
    </section>
    <div class="content">
        @include('adminlte-templates::common.errors')

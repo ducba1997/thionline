@@ -72,6 +72,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'birthday' => date("Y-m-d",strtotime($data['birthday'])),
             'id_gender' => $data['gender'],
+            'avatar' => 'userprofile1.png',
             'id_permission' => '3',
             'active' => '1',
             'address' => $data['address'],

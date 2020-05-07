@@ -18,7 +18,7 @@ class CreateQuestionTable extends Migration
             $table->unsignedBigInteger('id_exam');
             $table->foreign('id_exam')->references('id')->on('exam');
             $table->unsignedBigInteger('id_level_question');
-            $table->foreign('id_level_question')->references('id')->on('level_question');
+            $table->foreign('id_level_question')->references('id')->on('level_question')->onDelete('cascade');
             $table->text('content');
             $table->string('correct_answer');
             $table->string('answer_1')->nullable();

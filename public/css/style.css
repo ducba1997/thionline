@@ -193,7 +193,7 @@ select.form-control+.error{width:100%}
 .wrapheader .menu-login.is-login{position:relative;height:45px;padding-top:6px}
 .menu-login.is-badge .login{padding-right:5px}
 .wrapheader .is-login:hover .login{background:#1887bc}
-.box-subulmenu{visibility:hidden;z-index:999;position:absolute;top:100%;right:0;width:240px;border:1px solid #e8e8e8;background:#fff;color:#606060;margin-top:0;box-shadow:1px 1px 2px rgba(0,0,0,0.2);transition:all .3s ease;opacity:0;-webkit-transform:translate(30px,-10px);-ms-transform:translate(30px,-10px);transform:translate(30px,-10px)}
+.box-subulmenu{z-index:9999;position:absolute;top:100%;right:0;width:240px;border:1px solid #e8e8e8;background:#fff;color:#606060;margin-top:0;box-shadow:1px 1px 2px rgba(0,0,0,0.2);transition:all .3s ease;opacity:0;-webkit-transform:translate(30px,-10px);-ms-transform:translate(30px,-10px);transform:translate(30px,-10px)}
 .menu-login.is-login .login>span{display:inline-block;vertical-align:middle}
 .menu-login.is-login .login .badge{background:#ffae00;color:#fff;font-size:13px;font-weight:500;margin-left:5px}
 .wrapheader .is-login:hover .box-subulmenu{visibility:visible;opacity:1;-webkit-transform:translate(0px,0px);-ms-transform:translate(0px,0px);transform:translate(0px,0px)}

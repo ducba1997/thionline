@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>@yield('title')</title>
     <meta name="Keywords" content="video, bài giảng, trắc nghiệm, thcs, tiểu học, thpt, bài tập, sgk, sách giáo khoa, nâng cao, hỏi đáp, luyện tập">
-    <meta name="Description" content="HOCVUI cung cấp bài giảng, trắc nghiệm tất cả các bài học trong SGK miễn phí và hệ thống hỏi đáp để kết nối cộng đồng Học sinh và Giáo viên cả nước">
+    <meta name="Description" content="Học vui cung cấp bài giảng, trắc nghiệm tất cả các bài học trong SGK miễn phí và hệ thống hỏi đáp để kết nối cộng đồng Học sinh và Giáo viên cả nước">
     <link type="image/x-icon" href="upload/favicon.ico" rel="shortcut icon">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <base href="{{URL('/')}}/">
@@ -48,7 +48,7 @@
             <div class="container" style=" height: 45px;">
                 <div class="logo">
                     <a href="{{URL('/')}}">
-                        <img class="i_logo" alt="Hoc Vui" src="upload/hoc247_logo.png">
+                        <img class="i_logo" alt="Hoc Vui" src="upload/hocvui_logo.png">
                     </a>
                 </div>
                 <div id="menucate-pc" class="menu-right visible-md visible-lg hidden-xs">
@@ -65,7 +65,7 @@
                                 <a href="" onclick="return false;">Hỏi Đáp</a>
                             </li>
                             <li class="menu ">
-                                <a href="{{URL('/tai-lieu/')}}">Tư Liệu</a>
+                                <a href="{{URL('/tai-lieu/')}}">Tài Liệu</a>
                             </li>
                             <li class="menu ">
                                 <a href="" onclick="return false">VIDEO</a>
@@ -75,21 +75,23 @@
                 </div>
                 @if(Auth::check())
                     <div class="menu-login is-login .is-badge">
-                        <a class="login" href="javascript:void();" title="{{Auth::user()->name}}">
+                        <a class="login" href="" onclick="return false;" title="{{Auth::user()->name}}">
                             <span>Hi, {{Auth::user()->name}}</span>
                         </a>
                         <div class="box-subulmenu">
                             <ul class="subulmenu">
-                                <li class="item borbot hidden">
-                                    <a href="javascript:void()">
+                                @if(Auth::user()->id_permission != '3')
+                                <li class="item">
+                                    <a href="{{URL('/admin/genders')}}">
                                         <span class="i-icon">
-                                            <i class="fa fa-bell-o" aria-hidden="true"></i>
+                                            <i class="fa fa-user-circle-o" aria-hidden="true"></i>
                                         </span>
-                                        <span class="i-name">Thông báo</span>
+                                        <span class="i-name">Quản trị trang web</span>
                                     </a>
                                 </li>
+                                @endif
                                 <li class="item">
-                                    <a href="https://hoc247.net/thong-tin-ca-nhan/">
+                                    <a href="{{route('profile.infoprofile')}}">
                                         <span class="i-icon">
                                             <i class="fa fa-user-circle-o" aria-hidden="true"></i>
                                         </span>
@@ -97,11 +99,11 @@
                                     </a>
                                 </li>
                                 <li class="item">
-                                    <a href="https://hoc247.net/thong-tin-tai-khoan/">
+                                    <a href="{{route('profile.history.exam')}}">
                                         <span class="i-icon">
                                             <i class="fa fa-smile-o" aria-hidden="true"></i>
                                         </span>
-                                        <span class="i-name">Thông tin tài khoản</span>
+                                        <span class="i-name">Lịch sử thi</span>
                                     </a>
                                 </li>
                                 <li class="item">
@@ -151,7 +153,7 @@
                             @endforeach
                         </ul>
                         <!-- END submenu chuong trinh -->
-                        <div class="btnrank"><a href="https://hoc247.net/tin-tuc/danh-sach-nhan-thuong-theo-tuan"><i class="fas fa-star"></i> BXH Tuần/Tháng</a></div>
+                        <div class="btnrank"><a href=""><i class="fas fa-star"></i> BXH Tuần/Tháng</a></div>
                     </div>
                 </div>
             </div>
@@ -314,7 +316,7 @@
                 <div class="box-footer-top">
                     <div class="hidden-xs marbot30">
                         <div class="b-col col-lg-3 col-md-3 col-sm-2 col-xs-6 vertop b-img" style="padding-top:0px;">
-                            <img src="upload/hoc247_logo.png" id="logo_footer">
+                            <img src="upload/hocvui_logo.png" id="logo_footer">
                         </div>
                     </div>
                     <div class="b-col col-lg-12 col-md-12 col-sm-12 hidden-xs">
@@ -336,14 +338,14 @@
                                             <a href="https://www.facebook.com/ducba97" target="_blank" rel="nofollow"><img src="upload/i-fb.png"></a>
                                         </span>
                                         <span class="col-inline-block col-xs-2 pad5 canhgiua">
-                                            <a href="https://www.youtube.com/channel/UC1ngRQm9fW4l2gd2f0TogBw?sub_confirmation=1" target="_blank" rel="nofollow"><img src="upload/i-youtube.png"></a>
+                                            <a href="" target="_blank" rel="nofollow"><img src="upload/i-youtube.png"></a>
                                         </span>
                                     </div>
                                 </div>
                                 <div class="col-inline-block col-sm-4">
                                     <p><b>TẢI ỨNG DỤNG TRÊN ĐIỆN THOẠI</b></p>
-                                    <a target="ioshoc247" href="#"><img src="upload/appstore1.png"></a>
-                                    <a target="androidhoc247" href="#"><img src="upload/googleplay1.png"></a>
+                                    <a target="" href="#"><img src="upload/appstore1.png"></a>
+                                    <a target="" href="#"><img src="upload/googleplay1.png"></a>
                                 </div>
                             </div>
                         </div>

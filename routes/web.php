@@ -14,7 +14,9 @@
 Route::get('/', function () {
     return view('home');
 });
-
+Route::get('test', function (){
+    return view('testupload');
+});
 Route::get('bai-hoc/{slug}I{id}.html', 'LessonController@index')->name('lesson');
 Route::get('chuong-trinh/{grade?}/{subject?}', 'LessonController@showFullLesson')->name('lesson.full');
 
@@ -26,10 +28,16 @@ Route::post('bai-thi/calculatepoint','ExamController@calculatePoint')->name('exa
 Route::get('bai-thi/ket-qua/ket-qua-thi-{id}.html','ExamController@resultExam')->name('exam.result');
 Route::get('bai-thi/xem-lai-{id}.html','ExamController@reviewExam')->name('exam.review');
 
-Route::get('tai-lieu/{slug}I{id}.html', 'AssignmentController@index')->name('assignment');
+Route::get('xem-tai-lieu/{slug}I{id}.html', 'AssignmentController@index')->name('assignment');
 Route::get('tai-lieu/{grade?}/{subject?}','AssignmentController@showAssignmentFull')->name('assignment.full');
-Route::get('tai-lieu/tai-tai-lieu-{id}.html','AssignmentController@download')->name('assignment.download')->middleware('auth');
-Route::get('tai-lieu/xem-tai-lieu-{id}.html','AssignmentController@viewonline')->name('assignment.viewonline')->middleware('auth');
+Route::get('tap-tin/tai-tai-lieu-{id}.html','AssignmentController@download')->name('assignment.download')->middleware('auth');
+Route::get('tap-tin/xem-tai-lieu-{id}.html','AssignmentController@viewonline')->name('assignment.viewonline')->middleware('auth');
+
+Route::get('thong-tin-tai-khoan/thong-tin-ca-nhan.html', 'ProfileController@index')->name('profile.infoprofile');
+Route::get('thong-tin-tai-khoan/lich-su-thi.html','ProfileController@showHistoryExam')->name('profile.history.exam');
+Route::post('thong-tin-tai-khoan/cap-nhat-thong-tin','ProfileController@updateInfoProfile')->name('profile.update.info');
+Route::post('thong-tin-tai-khoan/cap-nhat-mat-khau','ProfileController@updatePasswordProfile')->name('profile.update.password');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -52,10 +60,8 @@ Route::group(['prefix' => 'admin','middleware' => 'adminauth'], function () {
     Route::resource('questions', 'Manage\QuestionController', ["as" => 'admin']);
     Route::resource('resultTests', 'Manage\ResultTestController', ["as" => 'admin']);
     Route::resource('resultTestDetails', 'Manage\ResultTestDetailController', ["as" => 'admin']);
-
-});
-
-
-Route::group(['prefix' => 'admin'], function () {
     Route::resource('assignments', 'Manage\AssignmentController', ["as" => 'admin']);
+    Route::get('question/import/importExcel','Manage\QuestionController@getImport')->name('admin.questions.importGet');
+    Route::post('question/import','Manage\QuestionController@postImport')->name('admin.questions.importPost');
 });
+

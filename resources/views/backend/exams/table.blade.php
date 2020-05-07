@@ -40,8 +40,8 @@
                 <th>Khối</th>
         <th>Môn</th>
         <th>Chương</th>
-        <th>Tên</th>
-        <th>Thời gian</th>
+        <th style="width: 260px">Tên</th>
+        <th>Chi tiết</th>
         <th>Trạng thái</th>
                 <th>Hành động</th>
             </tr>
@@ -55,7 +55,8 @@
             <td>{{ $exam->idSubject->name }}</td>
             <td>{{ $exam->idChapter->name }}</td>
             <td>{{ $exam->name }}</td>
-            <td>{{ $exam->time_to_do }}</td>
+            <?php $countquestion=App\Model\ExamDetail::where('id_exam',$exam->id)->sum('count'); ?>
+            <td>Thời gian: {{gmdate("i", $exam->time_to_do)." p "}}  <br/>Số lượng: {{$countquestion}} câu [<a style="text-decoration: underline;" href="{{ route('admin.examDetails.index') }}?exam={{$exam->id}}">Chi tiết</a>]<br/>Câu hỏi: [<a style="text-decoration: underline;" href="{{ route('admin.questions.index') }}?exam={{$exam->id}}">Chi tiết</a>]</td>
             <td>
             @if($exam->status==1)
             <span class="label label-success">Mở</span>

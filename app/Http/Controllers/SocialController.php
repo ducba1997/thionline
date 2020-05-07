@@ -30,6 +30,7 @@ class SocialController extends Controller
                 'email'    => $getInfo->email,
                 'password' => Hash::make('123456789'),
                 'birthday' => date("Y-m-d",strtotime('20190503')),
+                'avatar' => 'userprofile1.png',
                 'id_gender' => '1',
                 'id_permission' => '3',
                 'active' => '1'
