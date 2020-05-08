@@ -11,7 +11,7 @@
         <div class="box box-primary">
             <div class="box-body">
                 <div class="row">
-                    {!! Form::open(['route' => 'admin.users.store']) !!}
+                    {!! Form::open(['route' => 'admin.users.store','enctype'=>"multipart/form-data" ]) !!}
 
                         @include('backend.users.fields')
 

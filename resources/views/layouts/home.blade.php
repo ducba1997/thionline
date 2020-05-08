@@ -82,7 +82,7 @@
                             <ul class="subulmenu">
                                 @if(Auth::user()->id_permission != '3')
                                 <li class="item">
-                                    <a href="{{URL('/admin/genders')}}">
+                                    <a href="{{route('admin.dashboard.index')}}">
                                         <span class="i-icon">
                                             <i class="fa fa-user-circle-o" aria-hidden="true"></i>
                                         </span>

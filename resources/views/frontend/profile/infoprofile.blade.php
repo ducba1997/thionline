@@ -95,7 +95,7 @@ Thông tin cá nhân
                         <form novalidate="novalidate" action="{{route('profile.update.password')}}" id="frmPassword" name="frmPassword" class="frm_edit_info" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                         @csrf    
                         <div class="edi_row fleft w100per">
-                                <label class="lbl fleft">Tên đăng nhập</label><input class="maxwidth" readonly="readonly" type="text" value="nguyenducba.97@gmail.com">
+                                <label class="lbl fleft">Tên đăng nhập</label><input class="maxwidth" readonly="readonly" type="text" value="{{Auth::user()->email}}">
                             </div>
                             <div class="edi_row fleft w100per">
                                 <label class="lbl fleft">&nbsp;</label><input class="edi_text maxwidth" type="password" id="password" name="password" placeholder="Mật khẩu mới" value=""><span class="error" style="float:none">*</span>

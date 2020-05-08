@@ -1,5 +1,5 @@
     <div style="float:left;width:100%;box-sizing:border-box;text-align:left">
-        <img height="56" alt="hocvui" src="{{URL('/upload/hocvuilogo.png')}}" style="float:left" width="181" class="CToWUd">
+        <img height="56" alt="hocvui" src="{{URL('/upload/hocvui_logo.png')}}" style="float:left" width="181" class="CToWUd">
     </div>
     <div style="float:left;width:100%;box-sizing:border-box">
         <p style="margin:0;padding:15px 10px;text-align:center;font-size:18px;background:#4bacc6;color:#fff;font-weight:bold">

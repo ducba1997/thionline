@@ -8,6 +8,7 @@ use App\Repositories\Manage\UsersRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\Hash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
@@ -55,8 +56,23 @@ class UsersController extends AppBaseController
      */
     public function store(CreateUsersRequest $request)
     {
-        $input = $request->all();
-
+        $input=[];
+        if ($request->hasFile('avatar')) {
+            $file = $request->avatar;
+            $arrhash= explode(".",$file->hashName());
+            $arrnohash=explode(".",$file->getClientOriginalName());
+            $newname=$arrnohash[0].$arrhash[0].".".$arrnohash[1];
+            $file->move(public_path()."/upload/avatar/",$newname);
+            $input['avatar']=$newname;
+        }
+        $input['name']=$request->name;
+        $input['email']=$request->email;
+        $input['id_gender']=$request->id_gender;
+        $input['id_permission']=$request->id_permission;
+        $input['address']=$request->address;
+        $input['birthday']=$request->birthday;
+        $input['password'] = Hash::make($request->password);
+        $input['active']=$request->active;
         $users = $this->usersRepository->create($input);
 
         Flash::success('Thêm mới thành công');
@@ -122,7 +138,24 @@ class UsersController extends AppBaseController
             return redirect(route('admin.users.index'));
         }
 
-        $users = $this->usersRepository->update($request->all(), $id);
+        $input=[];
+        if ($request->hasFile('avatar')) {
+            $file = $request->avatar;
+            $arrhash= explode(".",$file->hashName());
+            $arrnohash=explode(".",$file->getClientOriginalName());
+            $newname=$arrnohash[0].$arrhash[0].".".$arrnohash[1];
+            $file->move(public_path()."/upload/avatar/",$newname);
+            $input['avatar']=$newname;
+        }
+        $input['name']=$request->name;
+        $input['email']=$request->email;
+        $input['id_gender']=$request->id_gender;
+        $input['id_permission']=$request->id_permission;
+        $input['address']=$request->address;
+        $input['birthday']=$request->birthday;
+        $input['password'] = Hash::make($request->password);
+        $input['active']=$request->active;
+        $users = $this->usersRepository->update($input, $id);
 
         Flash::success('Cập nhật dữ liệu thành công');
 

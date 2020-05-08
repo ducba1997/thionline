@@ -1,8 +1,8 @@
 <div>
-    <?php
-    $gradeItems = App\Models\Manage\Grade::all()->pluck('name', 'id');
-    $subjectItems = App\Models\Manage\Subject::all()->pluck('name', 'id');
-    $chapterItems = App\Models\Manage\Chapter::all()->pluck('name', 'id');
+<?php
+    $gradeItems = App\Models\Manage\Grade::whereIn('id',\App\Models\Manage\Exam::all()->pluck('id_grade'))->pluck('name', 'id');
+    $subjectItems = App\Models\Manage\Subject::whereIn('id',\App\Models\Manage\Exam::all()->pluck('id_subject'))->pluck('name', 'id');
+    $chapterItems = App\Models\Manage\Chapter::whereIn('id',\App\Models\Manage\Exam::all()->pluck('id_chapter'))->pluck('name', 'id');
     ?>
 
     <div class="pull-left">

@@ -11,7 +11,7 @@
        <div class="box box-primary">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($users, ['route' => ['admin.users.update', $users->id], 'method' => 'patch']) !!}
+                   {!! Form::model($users, ['route' => ['admin.users.update', $users->id], 'method' => 'patch','enctype'=>"multipart/form-data"]) !!}
 
                         @include('backend.users.fields')
 

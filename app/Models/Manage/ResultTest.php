@@ -78,7 +78,7 @@ class ResultTest extends Model
      **/
     public function idUser()
     {
-        return $this->belongsTo(\App\Models\Manage\User::class, 'id_user');
+        return $this->belongsTo(\App\Models\Manage\Users::class, 'id_user');
     }
 
     /**

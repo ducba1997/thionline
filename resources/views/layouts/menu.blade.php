@@ -1,3 +1,6 @@
+<li class="{{ Request::is('admin') ? 'active' : '' }}">
+    <a href="{{ route('admin.users.index') }}"><i class="fa fa-dashboard"></i><span>Trang tổng quan</span></a>
+</li>
 
 <li class="{{ Request::is('admin/users*') ? 'active' : '' }}">
     <a href="{{ route('admin.users.index') }}"><i class="fa fa-user"></i><span>Quản lý người dùng</span></a>
@@ -6,7 +9,7 @@
 
 
 <li class="{{ Request::is('admin/lessons*') ? 'active' : '' }}">
-    <a href="{{ route('admin.lessons.index') }}"><i class="fa fa-table"></i><span>Quản lý bài học</span></a>
+    <a href="{{ route('admin.lessons.index') }}"><i class="fa fa-book"></i><span>Quản lý bài học</span></a>
 </li>
 
 

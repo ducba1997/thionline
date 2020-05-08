@@ -30,7 +30,7 @@ class ResultTestController extends AppBaseController
     public function index(Request $request)
     {
         $this->resultTestRepository->pushCriteria(new RequestCriteria($request));
-        $resultTests = $this->resultTestRepository->all();
+        $resultTests = $this->resultTestRepository->orderBy('created_at','desc')->all();
 
         return view('backend.result_tests.index')
             ->with('resultTests', $resultTests);

@@ -18,8 +18,15 @@
 </style>
 @endsection
 @section('js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
 <script>
     jQuery().ready(function() {
+        jQuery('#txtBirthday').datetimepicker({
+            format: 'YYYY-MM-DD',
+            useCurrent: false
+        })
         jQuery('#frmLogin').validate({
             rules: {
                 password: {

@@ -47,6 +47,9 @@ Route::get('/callback/{provider}', 'SocialController@callback');
 
 
 Route::group(['prefix' => 'admin','middleware' => 'adminauth'], function () {
+    Route::get('/', function (){
+        return view('backend.index');
+    })->name('admin.dashboard.index');
     Route::resource('genders', 'Manage\GenderController', ["as" => 'admin']);
     Route::resource('permissions', 'Manage\PermissionController', ["as" => 'admin']);
     Route::resource('grades', 'Manage\GradeController', ["as" => 'admin']);
