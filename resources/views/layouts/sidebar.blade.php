@@ -5,8 +5,8 @@
 
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel">
-            <div class="pull-left image">
-                <img src="{{asset('upload/avatar/'.Auth::user()->avatar)}}" style="width: 45px;height: 45px;"class="img-circle"
+            <div class="pull-left image"><?php $urlbasehref=URL('/upload/userprofile1.png'); ?>
+                <img onerror="this.src='{{$urlbasehref}}'" src="{{asset('upload/avatar/'.Auth::user()->avatar)}}" style="width: 45px;height: 45px;"class="img-circle"
                      alt="User Image"/>
             </div>
             <div class="pull-left info">

@@ -71,8 +71,8 @@
                         <li class="dropdown user user-menu">
                             <!-- Menu Toggle Button -->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <!-- The user image in the navbar-->
-                                <img src="{{asset('upload/avatar/'.Auth::user()->avatar)}}" style="width: 25px;height: 25px;"  class="user-image" alt="User Image" />
+                                <!-- The user image in the navbar--><?php $urlbasehref=URL('/upload/userprofile1.png'); ?>
+                                <img onerror="this.src='{{$urlbasehref}}'" src="{{asset('upload/avatar/'.Auth::user()->avatar)}}" style="width: 25px;height: 25px;"  class="user-image" alt="User Image" />
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                 <span class="hidden-xs">{{ Auth::user()->name }}</span>
                                 <i class="fa fa fa-angle-down"></i>
@@ -80,7 +80,7 @@
                             <ul class="dropdown-menu">
                                 <!-- The user image in the menu -->
                                 <li class="user-header">
-                                    <img src="{{asset('upload/avatar/'.Auth::user()->avatar)}}" style="width: 90px;height: 90px;"  class="img-circle" alt="User Image" />
+                                    <img onerror="this.src='{{$urlbasehref}}'" src="{{asset('upload/avatar/'.Auth::user()->avatar)}}" style="width: 90px;height: 90px;"  class="img-circle" alt="User Image" />
                                     <p>
                                         {{ Auth::user()->name }}
                                         <small>Thành viên từ tháng {{ Auth::user()->created_at->format('m / Y') }}</small>
