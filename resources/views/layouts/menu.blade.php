@@ -1,5 +1,5 @@
 <li class="{{ Request::is('admin') ? 'active' : '' }}">
-    <a href="{{ route('admin.users.index') }}"><i class="fa fa-dashboard"></i><span>Trang tổng quan</span></a>
+    <a href="{{ route('admin.dashboard.index') }}"><i class="fa fa-dashboard"></i><span>Trang tổng quan</span></a>
 </li>
 
 <li class="{{ Request::is('admin/users*') ? 'active' : '' }}">

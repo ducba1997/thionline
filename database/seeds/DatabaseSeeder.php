@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call('GradeDatabaseSeeder');
         $this->call('PermissionDatabaseSeeder');
         $this->call('LevelDatabaseSeeder');
+        $this->call('SubjectDatabaseSeeder');
         $this->call('UsersDatabaseSeeder');
         
     }
