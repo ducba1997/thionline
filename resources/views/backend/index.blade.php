@@ -12,8 +12,8 @@ $countuser = count(User::all());
 $countlesson = count(Lesson::all());
 $countexam = count(Exam::all());
 $countassignment = count(Assignment::all());
-$products = User::where(DB::raw("(DATE_FORMAT(created_at,'%Y'))"), 2020)->get();
-$resultest = ResultTest::where(DB::raw("(DATE_FORMAT(created_at,'%Y'))"), 2020)->get();
+$products = User::all();
+$resultest = ResultTest::all();
 $dataChart = C::database($products, 'bar', 'highcharts')
     ->title("Thống kê số lượng tài khoản đăng ký năm qua theo tháng")
     ->elementLabel("Tổng tài khoản")
