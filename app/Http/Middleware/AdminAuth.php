@@ -15,7 +15,7 @@ class AdminAuth
      */
     public function handle($request, Closure $next)
     {
-        if(\Auth::check()&&\Auth::user()->id_permission==1)
+        if(\Auth::check()&&\Auth::user()->id_permission<3)
             return $next($request);
         else
             return redirect('/login');

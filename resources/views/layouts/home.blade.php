@@ -41,8 +41,8 @@
 </head>
 
 <body style="">
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v6.0&appId=222066899212087&autoLogAppEvents=1"></script>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v6.0&appId=222066899212087&autoLogAppEvents=1"></script>
     <header id="header" style="z-index:1000;" data="computer">
         <div class="wrapheader mauhead">
             <div class="container" style=" height: 45px;">
@@ -51,7 +51,7 @@
                         <img class="i_logo" alt="Hoc Vui" src="upload/hocvui_logo.png">
                     </a>
                 </div>
-                <div id="menucate-pc" class="menu-right visible-md visible-lg hidden-xs">
+                <div id="menucate-pc" class="menu-right visible-md visible-lg hidden-xs" style="width: calc(100% - 96px);">
                     <a href="javascript:void(0);" id="nav-toggle" class="nav-toggle">Menu<span></span></a>
                     <nav id="site-navigation" class="main-navigation" role="navigation">
                         <ul class="navigation-menu">
@@ -70,62 +70,64 @@
                             <li class="menu ">
                                 <a href="" onclick="return false">VIDEO</a>
                             </li>
-                        </ul>
-                    </nav>
-                </div>
-                @if(Auth::check())
-                    <div class="menu-login is-login .is-badge">
-                        <a class="login" href="" onclick="return false;" title="{{Auth::user()->name}}">
-                            <span>Hi, {{Auth::user()->name}}</span>
+                            @if(Auth::check())
+                    <div class="menu" style="text-transform: none;">
+                        <a class="login" href="" onclick="return false;" style="height: 33px;" title="{{Auth::user()->name}}">
+                            <span>Hi, {{Auth::user()->name}} <i class="fa fa fa-angle-down"></i></span>
                         </a>
                         <div class="box-subulmenu">
                             <ul class="subulmenu">
-                                @if(Auth::user()->id_permission != '3')
-                                <li class="item">
+                                @if(Auth::user()->id_permission< 3) <li class="item">
                                     <a href="{{route('admin.dashboard.index')}}">
                                         <span class="i-icon">
                                             <i class="fa fa-user-circle-o" aria-hidden="true"></i>
                                         </span>
                                         <span class="i-name">Quản trị trang web</span>
                                     </a>
-                                </li>
-                                @endif
-                                <li class="item">
-                                    <a href="{{route('profile.infoprofile')}}">
-                                        <span class="i-icon">
-                                            <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-                                        </span>
-                                        <span class="i-name">Thông tin cá nhân</span>
-                                    </a>
-                                </li>
-                                <li class="item">
-                                    <a href="{{route('profile.history.exam')}}">
-                                        <span class="i-icon">
-                                            <i class="fa fa-smile-o" aria-hidden="true"></i>
-                                        </span>
-                                        <span class="i-name">Lịch sử thi</span>
-                                    </a>
-                                </li>
-                                <li class="item">
-                                    <a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        <span class="i-icon">
-                                            <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
-                                        </span>
-                                        <span class="i-name">Thoát</span>
-                                    </a>
-                                </li>
-                                <form id="logout-form" action="{{route('logout')}}" method="POST" style="display: none;">
-                                            {{csrf_field()}}                                  
-                                </form>
+                                    </li>
+                                    @endif
+                                    <li class="item">
+                                        <a href="{{route('profile.infoprofile')}}">
+                                            <span class="i-icon">
+                                                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                                            </span>
+                                            <span class="i-name">Thông tin cá nhân</span>
+                                        </a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="{{route('profile.history.exam')}}">
+                                            <span class="i-icon">
+                                                <i class="fa fa-smile-o" aria-hidden="true"></i>
+                                            </span>
+                                            <span class="i-name">Lịch sử thi</span>
+                                        </a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            <span class="i-icon">
+                                                <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+                                            </span>
+                                            <span class="i-name">Thoát</span>
+                                        </a>
+                                    </li>
+                                    <form id="logout-form" action="{{route('logout')}}" method="POST" style="display: none;">
+                                        {{csrf_field()}}
+                                    </form>
                             </ul>
                         </div>
                     </div>
-                @else
+                    @else
                     <div class="menu-login">
                         <a class="login btn-warning" href="{{route('login')}}">
                             <i class="fas fa-user"></i> Đăng nhập </a>
                     </div>
-                @endif
+                    @endif
+                        </ul>
+                    </nav>
+                    </div>
+                    
+                
+
             </div>
         </div>
         <div id="subheader" class="subheader">
@@ -144,7 +146,7 @@
                             </div>
                         </div>
                         <!-- submenu chuong trinh -->
-                        <?php $data_grade=App\Model\Grade::all(); ?>
+                        <?php $data_grade = App\Model\Grade::all(); ?>
                         <ul class="tlmenu" data-parent="chuong-trinh">
                             @foreach($data_grade as $value)
                             <li class="">
@@ -325,9 +327,9 @@
                                 <div class="col-inline-block col-sm-5">
                                     <ul class="menu-ft menu-ft-50">
                                         @foreach($data_grade as $value)
-                                            <li>
-                                                <a href="{{URL('/chuong-trinh')}}/{{$value->slug}}">{{$value->name}}</a>
-                                            </li>
+                                        <li>
+                                            <a href="{{URL('/chuong-trinh')}}/{{$value->slug}}">{{$value->name}}</a>
+                                        </li>
                                         @endforeach
                                     </ul>
                                 </div>
@@ -354,7 +356,7 @@
             </div>
             <div class="box-footer-top hidden-xs">
                 <div class="b-col col-lg-3 vertop">
-                    <a href="http://online.gov.vn/CustomWebsiteDisplay.aspx?DocId=28358" target="_blank"><img src="upload/bocongthuong.png"></a>
+                    <a href="#" onclick="return false;"><img src="upload/bocongthuong.png"></a>
                 </div>
                 <div class="b-col col-lg-9 vertop">
                     <div class="b-col col-lg-4 vertop fw300">
@@ -372,9 +374,20 @@
         </div>
     </footer>
     <p class="mauhead" style="min-height:90px;width:100%;float:left;">&nbsp;</p>
-    
-    
+
     @yield('js')
+    <script>
+        $check = false;
+        jQuery('.login').on('click', function() {
+            if ($check) {
+                jQuery('.box-subulmenu').removeClass('showmenuprofile');
+                $check = false;
+            } else {
+                jQuery('.box-subulmenu').addClass('showmenuprofile');
+                $check = true;
+            }
+        });
+    </script>
 </body>
 
 </html>

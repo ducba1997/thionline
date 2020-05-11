@@ -52,7 +52,7 @@ jQuery(document).ready(function(){
 </script>
 @endsection
 @section('content')
-<?php $itemResultest = \App\Models\Manage\ResultTest::where('id_user', Auth::user()->id)->get() ?>
+<?php $itemResultest = \App\Models\Manage\ResultTest::where('id_user', Auth::user()->id)->orderBy('created_at','desc')->get() ?>
 <section class="wrapbanner">
     <div class="container">
         <h1 class="cate-h1">Lịch sử thi</h1>
