@@ -153,7 +153,9 @@ class UsersController extends AppBaseController
         $input['id_permission']=$request->id_permission;
         $input['address']=$request->address;
         $input['birthday']=$request->birthday;
-        $input['password'] = Hash::make($request->password);
+        if($request->password){
+            $input['password'] = Hash::make($request->password);
+        }
         $input['active']=$request->active;
         $users = $this->usersRepository->update($input, $id);
 

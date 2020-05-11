@@ -32,6 +32,8 @@ class SocialController extends Controller
                 'birthday' => date("Y-m-d",strtotime('20190503')),
                 'avatar' => 'userprofile1.png',
                 'id_gender' => '1',
+                'provider' => $provider,
+                'provider_id' => $getInfo->id,
                 'id_permission' => '3',
                 'active' => '1'
             ]);

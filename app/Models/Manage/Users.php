@@ -85,8 +85,7 @@ class Users extends Model
         'name' => 'required',
         'email' => 'required',
         'id_gender' => 'required',
-        'id_permission' => 'required',
-        'password' => 'required'
+        'id_permission' => 'required'
     ];
 
     /**

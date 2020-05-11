@@ -59,6 +59,18 @@
     <p>{{ $users->active }}</p>
 </div>
 
+<!-- Active Field -->
+<div class="form-group">
+    {!! Form::label('active', 'Provider:') !!}
+    <p>{{ $users->provider }}</p>
+</div>
+
+<!-- Active Field -->
+<div class="form-group">
+    {!! Form::label('active', 'Provider_id:') !!}
+    <p>{{ $users->provider_id }}</p>
+</div>
+
 <!-- Remember Token Field -->
 <div class="form-group">
     {!! Form::label('remember_token', 'Remember Token:') !!}
