@@ -69,7 +69,7 @@ class SubjectDatabaseSeeder extends Seeder
 {
     public function run()
     {
-        DB::table('grade')->insert([
+        DB::table('subject')->insert([
             ['name'=>'Toán học','slug'=>'toan-hoc'],
             ['name'=>'Ngữ văn','slug'=>'ngu-van'],
             ['name'=>'Lịch sử','slug'=>'lich-su'],
