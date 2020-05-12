@@ -30,7 +30,7 @@ class AssignmentController extends Controller
                 ->join('assignment','assignment.id_subject','=','subject.id')
                 ->join('grade','grade.id','=','assignment.id_grade')
                 ->where('assignment.id_grade','=',$data_grade->id)
-                ->orderByRaw("RAND()");
+                ->inRandomOrder();
                 if(count($subjectItems->get())==0)
                     return redirect('/');
                 $subject=$subjectItems->first()->subject_slug;

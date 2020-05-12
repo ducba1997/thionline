@@ -31,7 +31,7 @@ class LessonController extends Controller
                 ->join('lesson','lesson.id_subject','=','subject.id')
                 ->join('grade','grade.id','=','lesson.id_grade')
                 ->where('lesson.id_grade','=',$data_grade->id)
-                ->orderByRaw("RAND()");
+                ->inRandomOrder();
                 if(count($subjectItems->get())==0)
                     return redirect('/');
                 $subject=$subjectItems->first()->subject_slug;
@@ -68,7 +68,7 @@ class LessonController extends Controller
                 ->join('exam','exam.id_subject','=','subject.id')
                 ->join('grade','grade.id','=','exam.id_grade')
                 ->where('exam.id_grade','=',$data_grade->id)
-                ->orderByRaw("RAND()");
+                ->inRandomOrder();
                 if(count($subjectItems->get())==0)
                     return redirect('/');
                 $subject=$subjectItems->first()->subject_slug;
