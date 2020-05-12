@@ -59,13 +59,13 @@
         });
 
         $('#grade').change(function (){
-            dt.column(3).search($('#grade :selected').val()).draw();
+            dt.column(2).search($('#grade :selected').val()).draw();
         });
         $('#subject').change(function (){
-            dt.column(4).search($('#subject :selected').val()).draw();
+            dt.column(3).search($('#subject :selected').val()).draw();
         });
         $('#chapter').change(function (){
-            dt.column(5).search($('#chapter :selected').val()).draw();
+            dt.column(4).search($('#chapter :selected').val()).draw();
         })
 
     });
