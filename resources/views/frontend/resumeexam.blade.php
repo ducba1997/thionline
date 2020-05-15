@@ -523,7 +523,7 @@
 
         
 
-        /*jQuery('.future_date').countdown({
+        jQuery('.future_date').countdown({
             until: $int_minute,
             padZeroes: true,
             format: 'MS',
@@ -531,7 +531,7 @@
             onExpiry: EndCountdown,
             onTick: Callbacks,
             layout: '{mn} : {sn}'
-        });*/
+        });
 
         function Callbacks(periods) {
             $int_minute--;
