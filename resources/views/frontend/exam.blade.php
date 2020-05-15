@@ -454,7 +454,7 @@
                             @endforeach
                         </div>
                         <div class="row">
-                        <a id="submitExam" class="btn btn-warning" style="margin-top: 10px">Nạp bài</a>
+                        <a  class="btn btn-warning submitExam" style="margin-top: 10px">Nạp bài</a>
                         <h4 class="future_date" ></h4>
                         </div>
                     </div>
@@ -463,8 +463,8 @@
             
             <div class="row" style="border-top: 1px solid">
                 <div class="col-sm-5"></div>
-                <div class="col-sm-4">
-                <button id="submitExam" class="btn btn-warning" style="margin-top: 10px">Nhấn vào đây để nộp bài</button>
+                <div class="col-sm-4"> 
+                <button class="btn btn-warning submitExam" style="margin-top: 10px">Nhấn vào đây để nộp bài</button>
                 <button id="exitExam" class="btn btn-danger" style="margin-top: 10px">Thoát</button>
                 </div>
             </div>
@@ -521,7 +521,7 @@
             // return;
         }
 
-        $('#submitExam').on('click', function(e) {
+        $('.submitExam').on('click', function(e) {
             e.preventDefault();
             var result = confirm("Xác nhận nộp bài");
             if (result) {
