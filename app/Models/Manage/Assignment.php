@@ -39,6 +39,7 @@ class Assignment extends Model
         'id_grade',
         'id_subject',
         'id_chapter',
+        'id_users',
         'url',
         'status'
     ];
@@ -56,6 +57,7 @@ class Assignment extends Model
         'id_grade' => 'integer',
         'id_subject' => 'integer',
         'id_chapter' => 'integer',
+        'id_users' => 'integer',
         'url' => 'string',
         'status' => 'boolean'
     ];

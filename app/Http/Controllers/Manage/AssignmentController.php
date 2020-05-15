@@ -11,6 +11,7 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use File;
+use Auth;
 class AssignmentController extends AppBaseController
 {
     /** @var  AssignmentRepository */
@@ -70,10 +71,12 @@ class AssignmentController extends AppBaseController
             return redirect(route('admin.assignments.index'));
         }
         $request->merge(['slug' => str_slug($request->name),'url' => $newname]);
+        $id_users = Auth::id();
         $input=[];
         $input['name'] = $request->name;
         $input['slug']=str_slug($request->name);
         $input['description'] = $request->description;
+        $input['id_users'] = $id_users;
         $input['id_grade'] = $request->id_grade;
         $input['id_subject'] = $request->id_subject;
         $input['id_chapter'] = $request->id_chapter;
