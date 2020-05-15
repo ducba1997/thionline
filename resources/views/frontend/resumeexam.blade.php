@@ -442,7 +442,7 @@
                                     @endif
                                     @endforeach
 
-                                    <button class="btn btn-primary clicking" onclick="return false">
+                                    <!--<button class="btn btn-primary clicking" onclick="return false">
                                     @if($value->answer)
                                     Đã lưu
                                     @else
@@ -450,7 +450,7 @@
                                     @endif
                                     
                                     </button>
-                                    &nbsp&nbsp
+                                    &nbsp&nbsp-->
                                     <button class="btn btn-success flagging" onclick="return false">Xem lại</button>
                                 </ul>
 
@@ -523,7 +523,7 @@
 
         
 
-        jQuery('.future_date').countdown({
+        /*jQuery('.future_date').countdown({
             until: $int_minute,
             padZeroes: true,
             format: 'MS',
@@ -531,7 +531,7 @@
             onExpiry: EndCountdown,
             onTick: Callbacks,
             layout: '{mn} : {sn}'
-        });
+        });*/
 
         function Callbacks(periods) {
             $int_minute--;
@@ -552,17 +552,7 @@
             // return;
         }
 
-        $(".item-quest-answer").bind("click", function(e) {
-            event.stopPropagation();
-            event.stopImmediatePropagation();
-            $(".item-quest-answer").css('background', 'none');
-            //jQuery(this).find('input[type=radio]:not(:checked)').parent().parent().parent().css('background', 'none');
-            jQuery(this).find('input[type=radio]').prop('checked', true);
-            $.each($(".item-quest-answer"), function() {
-                if (jQuery(this).find('input[type=radio]:checked').val())
-                    $(this).css('background', '#b5ddf7');
-            });
-        });
+        
 
         $('#submitExam').on('click', function(e) {
             e.preventDefault();
@@ -584,6 +574,51 @@
             $this = $(this);
             $id_data = $this.parent().attr('tag');
             $('a[href*="{{Request::url()}}#'+$id_data+'"]').children().attr('class','btn btn-success');
+        });
+
+        $(".item-quest-answer").bind("click", function(e) {
+            event.stopPropagation();
+            event.stopImmediatePropagation();
+            $(".item-quest-answer").css('background', 'none');
+            //jQuery(this).find('input[type=radio]:not(:checked)').parent().parent().parent().css('background', 'none');
+            jQuery(this).find('input[type=radio]').prop('checked', true);
+            $.each($(".item-quest-answer"), function() {
+                if (jQuery(this).find('input[type=radio]:checked').val())
+                    $(this).css('background', '#b5ddf7');
+            });
+            $this = $(this);
+            //$id_question =$this.parent();
+            $id_question = $this.parent().attr('value');
+            $id_data = $this.parent().attr('tag');
+            $answer = $this.parent().find('input[type=radio]:checked').val();
+            
+            if($answer){
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                url: "{{route('exam.save')}}",
+                type: "post",
+                data:{
+                        question: $id_question,
+                        answer: $answer,
+                        time_remaining: $int_minute
+                },
+                dataType: 'text',
+                success: function(data) {
+                    Pace.restart();
+                    $('#count_answered').text(data+" /"); 
+                    $('a[href*="{{Request::url()}}#'+$id_data+'"]').children().attr('class','btn btn-primary');
+                },
+                error: function(error) {
+                    alert("Không thể lưu đáp án vào lúc này");
+                }
+            });
+            }else{
+                alert('Bạn chưa chọn đáp án')
+            }
         });
 
         $('.clicking').on('click', function(e) {

@@ -428,7 +428,7 @@
                             </li>
 
                             @endforeach
-                            <button class="btn btn-primary clicking" onclick="return false">Lưu đáp án</button>
+                            <!--<button class="btn btn-primary clicking" onclick="return false">Lưu đáp án</button>-->
                             <button class="btn btn-success flagging" onclick="return false">Xem lại</button>
                         </ul>
 
@@ -546,6 +546,39 @@
                 if (jQuery(this).find('input[type=radio]:checked').val())
                     $(this).css('background', '#b5ddf7');
             });
+            $this = $(this);
+            //$id_question =$this.parent();
+            $id_question = $this.parent().attr('value');
+            $id_data = $this.parent().attr('tag');
+            $answer = $this.parent().find('input[type=radio]:checked').val();
+            
+            if($answer){
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                url: "{{route('exam.save')}}",
+                type: "post",
+                data:{
+                        question: $id_question,
+                        answer: $answer,
+                        time_remaining: $int_minute
+                },
+                dataType: 'text',
+                success: function(data) {
+                    Pace.restart();
+                    $('#count_answered').text(data+" /"); 
+                    $('a[href*="{{Request::url()}}#'+$id_data+'"]').children().attr('class','btn btn-primary');
+                },
+                error: function(error) {
+                    alert("Không thể lưu đáp án vào lúc này");
+                }
+            });
+            }else{
+                alert('Bạn chưa chọn đáp án')
+            }
         });
         $('.flagging').on('click', function(e) {
             $this = $(this);
