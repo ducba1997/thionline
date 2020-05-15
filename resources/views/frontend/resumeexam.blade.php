@@ -168,7 +168,7 @@
     }
 
     .dstl li {
-        width: 50%;
+        width: 80%;
         list-style: none;
         float: left;
         margin-right: 1000px;
@@ -201,7 +201,6 @@
         background: #ffd698;
         padding: 10px;
         border: 1px solid #8bb2cc;
-        margin-top: 20px;
         padding-bottom: 10px;
     }
 
@@ -380,7 +379,7 @@
 @section('content')
 <section class="main">
     <div class="container" id="danhmuctieude">
-        <div class="boxquiz">
+        <div class="boxquiz" id="tieude">
             <div class="sec1">
                 <h2>Bài kiểm tra</h2>
                 <h1>{{$data_exam['name']}}</h1>
@@ -392,74 +391,107 @@
             </div>
             <div class="sec3">
                 <i class="fa fa-clock"></i>
-                <span id="future_date" class=""></span>
+                <span class="future_date" class=""></span>
             </div>
             <div class="clear"></div>
         </div>
     </div>
     <article class="box-detail">
         <div class="container">
+            <div class="row">
+                <div class="col-md-8" style="border-right: 1px solid #8bb2cc;border-left: 1px solid #8bb2cc; margin-left: 15px;">
+                    <form name="frmTest" id="frmTest" method="POST" style="font-size: 15px">
+                        <?php $i = 0; ?>
+                        @foreach($data_question as $value)
+                        <?php $arr_answer = array($value->question->answer_1,$value->question->answer_2,$value->question->answer_3,$value->question->correct_answer);shuffle($arr_answer); ?>
+                        <ul class="dsch" style="margin-bottom:0px">
+                            <li class="lch col-xs-12" >
+                                <div class="clear"></div>
+                                <strong class="fleft">Câu {{++$i}}: </strong>&nbsp;
+                                <div class="fleft"> 
+                                </div>
+                                <div class="fleft">
+                                    <p>&nbsp{{$value->question->content}}</p>
+                                </div>
+                                <div class="clear"></div>
+                                <?php $letter = 'A'; ?>
+                                <ul class="dstl" id="qt{{$value->id}}" value="{{$value->question->id}}">
+                                    @foreach($arr_answer as $answer)
+                                    @if($answer==$value->answer)
+                                    <li id="" class="item-quest-answer " style="background-color: #b5ddf7;'">
+                                        <div class="fleft">
+                                            <span class="fleft">
+                                                <input type="radio" value="{{$answer}}" name="question_{{$value->question->id}}" id="" checked> <strong style="font-size: 13px">{{$letter}}.&nbsp<?php $letter++;
+                                                                                                                                                                                    ?> </strong> </span>
+                                            <span class="fleft" style="font-size: 13px">
+                                                <p> {{$answer}} </p>
+                                            </span>
+                                        </div>
+                                    </li>
+                                    @else
+                                    <li id="" class="item-quest-answer ">
+                                        <div class="fleft">
+                                            <span class="fleft">
+                                                <input type="radio" value="{{$answer}}" name="question_{{$value->question->id}}" id=""> <strong style="font-size: 13px">{{$letter}}.&nbsp<?php $letter++;
+                                                                                                                                                                                    ?> </strong> </span>
+                                            <span class="fleft" style="font-size: 13px">
+                                                <p> {{$answer}} </p>
+                                            </span>
+                                        </div>
+                                    </li>
+                                    @endif
+                                    @endforeach
 
-            <form name="frmTest" id="frmTest" method="POST" style="font-size: 15px">
-                <?php $i = 0; ?>
-                @foreach($data_question as $value)
-                <?php $arr_answer = array($value->question->answer_1,$value->question->answer_2,$value->question->answer_3,$value->question->correct_answer);shuffle($arr_answer); ?>
-                <ul class="dsch" style="margin-bottom:0px">
-                    <li class="lch col-xs-12">
-                        <div class="clear"></div>
-                        <strong class="fleft">Câu {{++$i}}: </strong>&nbsp;
-                        <div class="fleft"> 
-                        </div>
-                        <div class="fleft">
-                            <p>&nbsp{{$value->question->content}}</p>
-                        </div>
-                        <div class="clear"></div>
-                        <?php $letter = 'A'; ?>
-                        <ul class="dstl" id="Câu {{$i}}" value="{{$value->question->id}}">
-                            @foreach($arr_answer as $answer)
-                            @if($answer==$value->answer)
-                            <li id="" class="item-quest-answer " style="background-color: #b5ddf7;'">
-                                <div class="fleft">
-                                    <span class="fleft">
-                                        <input type="radio" value="{{$answer}}" name="question_{{$value->question->id}}" id="" checked> <strong style="font-size: 13px">{{$letter}}.&nbsp<?php $letter++;
-                                                                                                                                                                             ?> </strong> </span>
-                                    <span class="fleft" style="font-size: 13px">
-                                        <p> {{$answer}} </p>
-                                    </span>
-                                </div>
-                            </li>
+                                    <button class="btn btn-primary clicking" onclick="return false">
+                                    @if($value->answer)
+                                    Đã lưu
+                                    @else
+                                        Lưu đáp án 
+                                    @endif
+                                    
+                                    </button>
+                                </ul>
+
+                        </ul>
+                        @endforeach
+                        <ul class="dsch" style="margin-bottom:0px; height: 200px">
+                        </ul>
+                    </form>
+                </div>
+                <div class="col-md-3" style="margin-top: 50px;margin-left: 50px">
+                    <div class="col text-center">
+                        <div class="row">
+                            <div class="logo">
+                                <h4 style="font-weight: bold;">Câu hỏi:</h4>
+                            </div>
+                            <?php $qt=0; ?>
+                            @foreach($data_question as $value)
+                            @if($value->answer)
+                            <a href="{{Request::url()}}#qt{{$value->id}}"><button type="button" class="btn btn-primary"
+                                    style="width:50px;margin:3px"">
+                                    {{++$qt}}
+                                </button></a> 
                             @else
-                            <li id="" class="item-quest-answer ">
-                                <div class="fleft">
-                                    <span class="fleft">
-                                        <input type="radio" value="{{$answer}}" name="question_{{$value->question->id}}" id=""> <strong style="font-size: 13px">{{$letter}}.&nbsp<?php $letter++;
-                                                                                                                                                                             ?> </strong> </span>
-                                    <span class="fleft" style="font-size: 13px">
-                                        <p> {{$answer}} </p>
-                                    </span>
-                                </div>
-                            </li>
+                            <a href="{{Request::url()}}#qt{{$value->id}}"><button type="button" class="btn btn-default"
+                                    style="width:50px;margin:3px"">
+                                    {{++$qt}}
+                                </button></a> 
                             @endif
                             @endforeach
+                        </div>
+                        <div class="row">
+                        <a id="submitExam" class="btn btn-warning" style="margin-top: 10px">Nạp bài</a>
+                        <h4 class="future_date" ></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
 
-                            <button class="btn btn-primary clicking" onclick="return false">
-                            @if($value->answer)
-                               Đã lưu
-                            @else
-                                Lưu đáp án 
-                            @endif
-                            
-                            </button>
-                        </ul>
-
-                </ul>
-                @endforeach
-                
-            </form>
             <div class="row" style="border-top: 1px solid">
                 <div class="col-sm-5"></div>
                 <div class="col-sm-4">
-                <button id="submitExam" class="btn btn-warning" style="margin-top: 10px">Nhấn vào đây để nộp bài</button>
+                <button id="submitExam" class="btn btn-warning" style="margin-top: 10px">Nhấn vào đây để nạp bài</button>
                 <button id="exitExam" class="btn btn-danger" style="margin-top: 10px">Thoát</button>
                 </div>
             </div>
@@ -474,8 +506,6 @@
                 <input type="submit" value="">    
             </form>
         </div>
-        </li>
-        </ul>
 
         </div>
     </article>
@@ -491,7 +521,7 @@
 
         
 
-        jQuery('#future_date').countdown({
+        jQuery('.future_date').countdown({
             until: $int_minute,
             padZeroes: true,
             format: 'MS',
@@ -503,8 +533,9 @@
 
         function Callbacks(periods) {
             $int_minute--;
-            if (jQuery.countdown.periodsToSeconds(periods) === 20) {
+            if (jQuery.countdown.periodsToSeconds(periods) === 30) {
                 jQuery('.boxquiz').css('background-color', 'red');
+                location.href="{{Request::url().'#tieude'}}";
             } else if (jQuery.countdown.periodsToSeconds(periods) <= 0) {
                 //EndCountdown();
             }
@@ -551,6 +582,7 @@
             $this = $(this);
             //$id_question =$this.parent();
             $id_question = $this.parent().attr('value');
+            $id_data = $this.parent().attr('id');
             $answer = $this.parent().find('input[type=radio]:checked').val();
             
             if($answer){
@@ -573,7 +605,7 @@
                     Pace.restart();
                     $('#count_answered').text(data+" /");
                     $this.text("Đã lưu"); 
-                    alert(url);
+                    $('a[href*="{{Request::url()}}#'+$id_data+'"]').children().attr('class','btn btn-primary');
                 },
                 error: function(error) {
                     alert("Không thể lưu đáp án vào lúc này");
@@ -588,7 +620,7 @@
         });
     });
     jQuery('#frmTest').slimscroll({
-        height: '600px'
+        height: '480px',
     });
     jQuery('#toggleButton').click(function() {
         jQuery('#future_date').countdown('toggle');

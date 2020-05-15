@@ -165,7 +165,7 @@
     }
 
     .dstl li {
-        width: 50%;
+        width: 80%;
         list-style: none;
         float: left;
         margin-right: 1000px;
@@ -389,19 +389,20 @@
             </div>
             <div class="sec3">
                 <i class="fa fa-clock"></i>
-                <span id="future_date" class=""></span>
+                <span class="future_date" ></span>
             </div>
             <div class="clear"></div>
         </div>
     </div>
     <article class="box-detail">
         <div class="container">
-
-            <form name="frmTest" id="frmTest" method="POST" style="font-size: 15px">
+        <div class="row">
+                <div class="col-md-8" style="border-right: 1px solid #8bb2cc;border-left: 1px solid #8bb2cc; margin-left: 15px;">
+                <form name="frmTest" id="frmTest" method="POST" style="font-size: 15px">
                 <?php $i = 0; ?>
                 @foreach($data_question as $value)
                 <?php $arr_answer = array($value['answer_1'], $value['answer_2'], $value['answer_3'], $value['correct_answer']);shuffle($arr_answer); ?>
-                <ul class="dsch" style="margin-bottom:0px">
+                <ul class="dsch" style="margin-bottom:0px" >
                     <li class="lch col-xs-12">
                         <div class="clear"></div>
                         <strong class="fleft">Câu {{++$i}}: </strong>&nbsp;
@@ -413,7 +414,7 @@
                         <input type="hidden" id="hdnnumans_148997" value="">
                         <div class="clear"></div>
                         <?php $letter = 'A'; ?>
-                        <ul class="dstl" id="Câu {{$i}}" value="{{$value['id']}}">
+                        <ul class="dstl" id="qt{{$value['id']}}" value="{{$value['id']}}">
                             @foreach($arr_answer as $answer)
                             <li id="" class="item-quest-answer ">
                                 <div class="fleft">
@@ -432,7 +433,33 @@
 
                 </ul>
                 @endforeach
+                <ul class="dsch" style="margin-bottom:0px; height: 200px">
+                        </ul>
             </form>
+                </div>
+                <div class="col-md-3" style="margin-top: 50px;margin-left: 50px">
+                    <div class="col text-center">
+                        <div class="row">
+                            <div class="logo">
+                                <h4 style="font-weight: bold;">Câu hỏi:</h4>
+                            </div>
+                            <?php $qt=0; ?>
+                            @foreach($data_question as $value)
+                            <a href="{{Request::url()}}#qt{{$value['id']}}"><button type="button" class="btn btn-default"
+                                    style="width:50px;margin:3px"">
+                                    {{++$qt}}
+                                </button></a>    
+                            
+                            @endforeach
+                        </div>
+                        <div class="row">
+                        <a id="submitExam" class="btn btn-warning" style="margin-top: 10px">Nạp bài</a>
+                        <h4 class="future_date" ></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <div class="row" style="border-top: 1px solid">
                 <div class="col-sm-5"></div>
                 <div class="col-sm-4">
@@ -464,7 +491,7 @@
 
     jQuery(function($) {
 
-        jQuery('#future_date').countdown({
+        jQuery('.future_date').countdown({
             until: $int_minute,
             padZeroes: true,
             format: 'MS',
@@ -476,8 +503,9 @@
 
         function Callbacks(periods) {
             $int_minute--;
-            if (jQuery.countdown.periodsToSeconds(periods) === 20) {
+            if (jQuery.countdown.periodsToSeconds(periods) === 30) {
                 jQuery('.boxquiz').css('background-color', 'red');
+                location.href="{{Request::url().'#tieude'}}";
             } else if (jQuery.countdown.periodsToSeconds(periods) <= 0) {
                 //EndCountdown();
             }
@@ -523,7 +551,7 @@
             //$id_question =$this.parent();
             $id_question = $this.parent().attr('value');
             $answer = $this.parent().find('input[type=radio]:checked').val();
-            
+            $id_data = $this.parent().attr('id');
             if($answer){
                 $this.text("Đang lưu...");
                 $.ajaxSetup({
@@ -544,7 +572,7 @@
                     Pace.restart();
                     $('#count_answered').text(data+" /");
                     $this.text("Đã lưu"); 
-                    alert(url);
+                    $('a[href*="{{Request::url()}}#'+$id_data+'"]').children().attr('class','btn btn-primary');
                 },
                 error: function(error) {
                     alert("Không thể lưu đáp án vào lúc này");
