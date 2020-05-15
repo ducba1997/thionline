@@ -198,7 +198,7 @@
                                     @foreach($examItems as $value)    
                                     <li class="item">
                                             <div class="col-md-12 col-xs-12 fright">
-                                                <a class="i-des" href="{{route('exam.index',['slug'=>$value->slug,'id'=>$value->id])}}" target="_blank">{{$value->name}}</a>
+                                                <a class="i-des" href="{{route('exam.preview',['id'=>$value->id])}}" target="_blank">{{$value->name}}</a>
                                                 <div class="i-tool">
                                                 <?php $countquestion=App\Model\ExamDetail::where('id_exam',$value->id)->sum('count'); ?>
                                                     <i class="far fa-file-alt marright5"></i> {{$countquestion}} câu &nbsp;

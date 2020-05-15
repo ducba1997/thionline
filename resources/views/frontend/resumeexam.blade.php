@@ -450,6 +450,8 @@
                                     @endif
                                     
                                     </button>
+                                    &nbsp&nbsp
+                                    <button class="btn btn-success flagging" onclick="return false">Xem lại</button>
                                 </ul>
 
                         </ul>
@@ -521,7 +523,7 @@
 
         
 
-        jQuery('.future_date').countdown({
+        /*jQuery('.future_date').countdown({
             until: $int_minute,
             padZeroes: true,
             format: 'MS',
@@ -529,7 +531,7 @@
             onExpiry: EndCountdown,
             onTick: Callbacks,
             layout: '{mn} : {sn}'
-        });
+        });*/
 
         function Callbacks(periods) {
             $int_minute--;
@@ -576,6 +578,12 @@
             if (result) {
                 $('#destroyForm').submit();
             }
+        });
+
+        $('.flagging').on('click', function(e) {
+            $this = $(this);
+            $id_data = $this.parent().attr('tag');
+            $('a[href*="{{Request::url()}}#'+$id_data+'"]').children().attr('class','btn btn-success');
         });
 
         $('.clicking').on('click', function(e) {

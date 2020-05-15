@@ -60,6 +60,15 @@ class ExamController extends Controller
         return view('frontend.exam', ['data_exam' => $data_exam->first()->toArray(), 'data_question' => $data_question]);
     }
 
+    public function preview($id=null){
+        if(!$id)
+            return abort('404');
+        $data_exam = Exam::where('id', $id);
+        if (count($data_exam->get()) == 0||$data_exam->first()->status==0)
+            return abort('404');
+        return view('frontend.exam.preview',['data_exam'=>$data_exam->first()]);
+    }
+
     public function deleteExam(){
         $id_user = Auth::id();
         $data_result_test=ResultTest::where('id_user',$id_user)->whereNull('point');

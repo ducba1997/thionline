@@ -20,6 +20,7 @@ Route::get('test', function (){
 Route::get('bai-hoc/{slug}I{id}.html', 'LessonController@index')->name('lesson');
 Route::get('chuong-trinh/{grade?}/{subject?}', 'LessonController@showFullLesson')->name('lesson.full');
 
+Route::get('de-thi/huong-dan-thi-{id?}.html','ExamController@preview')->name('exam.preview');
 Route::get('de-thi/{grade?}/{subject?}','LessonController@showExamFull')->name('exam.full');
 Route::get('bai-thi/{slug}I{id}.html','ExamController@index')->name('exam.index');
 Route::post('bai-thi/saveanswer','ExamController@saveAnswer')->name('exam.save');

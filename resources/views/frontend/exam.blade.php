@@ -429,6 +429,7 @@
 
                             @endforeach
                             <button class="btn btn-primary clicking" onclick="return false">Lưu đáp án</button>
+                            <button class="btn btn-success flagging" onclick="return false">Xem lại</button>
                         </ul>
 
                 </ul>
@@ -546,6 +547,12 @@
                     $(this).css('background', '#b5ddf7');
             });
         });
+        $('.flagging').on('click', function(e) {
+            $this = $(this);
+            $id_data = $this.parent().attr('tag');
+            $('a[href*="{{Request::url()}}#'+$id_data+'"]').children().attr('class','btn btn-success');
+        });
+
         $('.clicking').on('click', function(e) {
             $this = $(this);
             //$id_question =$this.parent();

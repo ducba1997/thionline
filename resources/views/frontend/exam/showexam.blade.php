@@ -63,7 +63,7 @@ if(count($data_check_result_test->get()))
                             </span>
                         </div>
                         <div class="i-head">
-                            <a href="{{route('exam.index',['slug'=>$value->exam_slug,'id'=>$value->exam_id])}}">
+                            <a href="{{route('exam.preview',['id'=>$value->exam_id])}}">
                                 <h3 class="i-title">
                                     <span class="h3i">{{$value->exam_name}}</span>
                                 </h3>
@@ -91,10 +91,10 @@ if(count($data_check_result_test->get()))
                                         @if($idresume==$value->exam_id)
                                             <a href="{{route('exam.index',['slug'=>$value->exam_slug,'id'=>$value->exam_id])}}"><button class="btn btn_orange_sm posrelative0"><i class="fa fa-check-circle"></i> Tiếp tục thi</button></a>
                                         @else 
-                                            <a href="{{route('exam.index',['slug'=>$value->exam_slug,'id'=>$value->exam_id])}}"><button class="btn btn_orange_sm posrelative0"><i class="fa fa-check-circle"></i> Bắt đầu thi</button></a>
+                                            <a href="{{route('exam.preview',['id'=>$value->exam_id])}}"><button class="btn btn_orange_sm posrelative0"><i class="fa fa-check-circle"></i> Bắt đầu thi</button></a>
                                         @endif
                                     @else
-                                        <a href="{{route('exam.index',['slug'=>$value->exam_slug,'id'=>$value->exam_id])}}"><button class="btn btn_orange_sm posrelative0"><i class="fa fa-check-circle"></i> Bắt đầu thi</button></a>
+                                        <a href="{{route('exam.preview',['id'=>$value->exam_id])}}"><button class="btn btn_orange_sm posrelative0"><i class="fa fa-check-circle"></i> Bắt đầu thi</button></a>
                                     
                                     @endif
                                     </div>
