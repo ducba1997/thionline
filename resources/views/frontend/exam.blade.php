@@ -402,7 +402,7 @@
                 <?php $i = 0; ?>
                 @foreach($data_question as $value)
                 <?php $arr_answer = array($value['answer_1'], $value['answer_2'], $value['answer_3'], $value['correct_answer']);shuffle($arr_answer); ?>
-                <ul class="dsch" style="margin-bottom:0px" >
+                <ul class="dsch" id="qt{{$value['id']}}" style="margin-bottom:0px" >
                     <li class="lch col-xs-12">
                         <div class="clear"></div>
                         <strong class="fleft">Câu {{++$i}}: </strong>&nbsp;
@@ -414,7 +414,7 @@
                         <input type="hidden" id="hdnnumans_148997" value="">
                         <div class="clear"></div>
                         <?php $letter = 'A'; ?>
-                        <ul class="dstl" id="qt{{$value['id']}}" value="{{$value['id']}}">
+                        <ul class="dstl" tag="qt{{$value['id']}}" value="{{$value['id']}}">
                             @foreach($arr_answer as $answer)
                             <li id="" class="item-quest-answer ">
                                 <div class="fleft">
@@ -551,7 +551,7 @@
             //$id_question =$this.parent();
             $id_question = $this.parent().attr('value');
             $answer = $this.parent().find('input[type=radio]:checked').val();
-            $id_data = $this.parent().attr('id');
+            $id_data = $this.parent().attr('tag');
             if($answer){
                 $this.text("Đang lưu...");
                 $.ajaxSetup({

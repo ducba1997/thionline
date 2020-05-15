@@ -404,7 +404,7 @@
                         <?php $i = 0; ?>
                         @foreach($data_question as $value)
                         <?php $arr_answer = array($value->question->answer_1,$value->question->answer_2,$value->question->answer_3,$value->question->correct_answer);shuffle($arr_answer); ?>
-                        <ul class="dsch" style="margin-bottom:0px">
+                        <ul class="dsch" id="qt{{$value->id}}" style="margin-bottom:0px">
                             <li class="lch col-xs-12" >
                                 <div class="clear"></div>
                                 <strong class="fleft">Câu {{++$i}}: </strong>&nbsp;
@@ -415,7 +415,7 @@
                                 </div>
                                 <div class="clear"></div>
                                 <?php $letter = 'A'; ?>
-                                <ul class="dstl" id="qt{{$value->id}}" value="{{$value->question->id}}">
+                                <ul class="dstl" tag="qt{{$value->id}}" value="{{$value->question->id}}">
                                     @foreach($arr_answer as $answer)
                                     @if($answer==$value->answer)
                                     <li id="" class="item-quest-answer " style="background-color: #b5ddf7;'">
@@ -582,7 +582,7 @@
             $this = $(this);
             //$id_question =$this.parent();
             $id_question = $this.parent().attr('value');
-            $id_data = $this.parent().attr('id');
+            $id_data = $this.parent().attr('tag');
             $answer = $this.parent().find('input[type=radio]:checked').val();
             
             if($answer){
