@@ -86,7 +86,7 @@
                                             <div class="col-inline-block vermid col-lg-8 col-md-9 col-sm-9 col-xs-12 padbot10">
                                                 <div class="b-content">
                                                     <ul class="list-thaoluan-index" id="list-lession-index" style="overflow: hidden; width: 100%; height: 260px;">
-                                                    <?php $lessonItems=\App\Models\Manage\Lesson::inRandomOrder()->limit(8)->get() ?>    
+                                                    <?php $lessonItems=\App\Models\Manage\Lesson::inRandomOrder()->where('status',1)->limit(8)->get() ?>    
                                                     @foreach($lessonItems as $value)
                                                     <li class="item">
                                                             <a class="i-des" href="{{route('lesson',['slug'=>$value->slug,'id'=>$value->id])}}">{{$value->name}}</a>
@@ -137,7 +137,7 @@
                                             <div class="col-inline-block vermid col-lg-8 col-md-9 col-sm-9 col-xs-12 padbot10">
                                                 <div class="b-content">
                                                     <ul class="list-thaoluan-index" id="list-faq-index" style="overflow: hidden; width: 100%; height: 260px;">
-                                                    <?php $assignmentItems=\App\Models\Manage\Assignment::inRandomOrder()->limit(8)->get() ?>
+                                                    <?php $assignmentItems=\App\Models\Manage\Assignment::inRandomOrder()->where('status',1)->limit(8)->get() ?>
                                                     @foreach($assignmentItems as $value)
                                                     <li class="item">
                                                             <a class="i-des" href="{{route('assignment',['slug'=>$value->slug,'id'=>$value->id])}}">{{$value->name}}</a>
@@ -194,7 +194,7 @@
                             <div class="col-inline-block vermid col-md-12 col-xs-12 padbot10">
                                 <div class="b-content">
                                     <ul class="list-thionl-index" id="list-thionl-index" style="overflow: hidden; width: 100%; height: 260px;">
-                                    <?php $examItems=\App\Models\Manage\Exam::inRandomOrder()->limit(16)->get(); ?>
+                                    <?php $examItems=\App\Models\Manage\Exam::inRandomOrder()->where('status',1)->limit(16)->get(); ?>
                                     @foreach($examItems as $value)    
                                     <li class="item">
                                             <div class="col-md-12 col-xs-12 fright">
