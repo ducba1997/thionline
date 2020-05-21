@@ -9,33 +9,53 @@
 <!-- Content Field -->
 <div class="form-group col-sm-12 col-lg-12">
     {!! Form::label('content', 'Nội dung:') !!}
-    {!! Form::textarea('content', null, ['class' => 'form-control']) !!}
+    {!! Form::textarea('content', null, ['class' => 'form-control','id'=>'editorContent']) !!}
 </div>
 
 <!-- Correct Answer Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('correct_answer', 'Đáp án đúng:') !!}
-    {!! Form::text('correct_answer', null, ['class' => 'form-control']) !!}
+    {!! Form::textarea('correct_answer', null, ['class' => 'form-control','id'=>'editorCorrectAnswer']) !!}
 </div>
 
 <!-- Answer 1 Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('answer_1', 'Đáp án 1:') !!}
-    {!! Form::text('answer_1', null, ['class' => 'form-control']) !!}
+    {!! Form::textarea('answer_1', null, ['class' => 'form-control','id'=>'editorAnswer1']) !!}
 </div>
 
 <!-- Answer 2 Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('answer_2', 'Đáp án 2:') !!}
-    {!! Form::text('answer_2', null, ['class' => 'form-control']) !!}
+    {!! Form::textarea('answer_2', null, ['class' => 'form-control','id'=>'editorAnswer2']) !!}
 </div>
 
 <!-- Answer 3 Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('answer_3', 'Đáp án 3:') !!}
-    {!! Form::text('answer_3', null, ['class' => 'form-control']) !!}
+    {!! Form::textarea('answer_3', null, ['class' => 'form-control','id'=>'editorAnswer3']) !!}
 </div>
-
+@push('scripts')
+    <script src="{{asset('js/ckeditor/ckeditor.js')}}"></script>
+    <script>
+        CKEDITOR.replace('editorContent', {
+            filebrowserBrowseUrl: "{{ route('ckfinder_browser') }}"
+         } );
+        CKEDITOR.replace('editorCorrectAnswer', {
+            filebrowserBrowseUrl: "{{ route('ckfinder_browser') }}"
+        } );
+        CKEDITOR.replace('editorAnswer1', {
+            filebrowserBrowseUrl: "{{ route('ckfinder_browser') }}"
+        } );
+        CKEDITOR.replace('editorAnswer2', {
+            filebrowserBrowseUrl: "{{ route('ckfinder_browser') }}"
+        } );
+        CKEDITOR.replace('editorAnswer3', {
+            filebrowserBrowseUrl: "{{ route('ckfinder_browser') }}"
+        } );
+    </script>
+    @include('ckfinder::setup')
+@endpush
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Lưu', ['class' => 'btn btn-primary']) !!}

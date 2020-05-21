@@ -1,0 +1,1 @@
+{"result":{"text":"C O equals rightwards arrow with 12 below"},"status":"ok"}

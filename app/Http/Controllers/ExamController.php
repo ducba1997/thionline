@@ -47,7 +47,7 @@ class ExamController extends Controller
         $data_exam_detail = ExamDetail::where('id_exam', $id)->get();
         $data_question = [];
         foreach ($data_exam_detail as $value) {
-            $data_question = array_merge($data_question, Question::inRandomOrder()->where('id_level_question', $value->id_level_question)->take($value->count)->get()->toArray());
+            $data_question = array_merge($data_question, Question::inRandomOrder()->where('id_exam', $id)->where('id_level_question', $value->id_level_question)->take($value->count)->get()->toArray());
         }
         shuffle($data_question);
         foreach($data_question as $value){

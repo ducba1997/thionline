@@ -1,0 +1,1 @@
+{"result":{"text":"square root of 2 space end root plus 2 space equals 2 over 2 squared"},"status":"ok"}

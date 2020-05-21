@@ -411,20 +411,20 @@
                                 <div class="fleft"> 
                                 </div>
                                 <div class="fleft">
-                                    <p>&nbsp{{$value->question->content}}</p>
+                                    <p>&nbsp{!!$value->question->content!!}</p>
                                 </div>
                                 <div class="clear"></div>
                                 <?php $letter = 'A'; ?>
                                 <ul class="dstl" tag="qt{{$value->id}}" value="{{$value->question->id}}">
                                     @foreach($arr_answer as $answer)
                                     @if($answer==$value->answer)
-                                    <li id="" class="item-quest-answer " style="background-color: #b5ddf7;'">
+                                    <li id="" class="item-quest-answer " style="background-color: #b5ddf7;">
                                         <div class="fleft">
                                             <span class="fleft">
                                                 <input type="radio" value="{{$answer}}" name="question_{{$value->question->id}}" id="" checked> <strong style="font-size: 13px">{{$letter}}.&nbsp<?php $letter++;
                                                                                                                                                                                     ?> </strong> </span>
                                             <span class="fleft" style="font-size: 13px">
-                                                <p> {{$answer}} </p>
+                                                <p> {!!$answer!!} </p>
                                             </span>
                                         </div>
                                     </li>
@@ -435,7 +435,7 @@
                                                 <input type="radio" value="{{$answer}}" name="question_{{$value->question->id}}" id=""> <strong style="font-size: 13px">{{$letter}}.&nbsp<?php $letter++;
                                                                                                                                                                                     ?> </strong> </span>
                                             <span class="fleft" style="font-size: 13px">
-                                                <p> {{$answer}} </p>
+                                                <p> {!!$answer!!} </p>
                                             </span>
                                         </div>
                                     </li>

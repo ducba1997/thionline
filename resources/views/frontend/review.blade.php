@@ -408,16 +408,16 @@
                         <div class="fleft">
                         </div>
                         <div class="fleft">
-                            <p>&nbsp{{$value->question->content}}</p>
+                            <p>&nbsp{!!$value->question->content!!}</p>
                         </div>
                         <input type="hidden" id="hdnnumans_148997" value="">
                         <div class="clear"></div>
                         <?php $letter = 'A';
                         $answer_x = "answer_1" ?>
                         <ul class="dstl" id="Câu {{$i}}" value="{{$value['id']}}">
-                            @if($value->answer==$value->question->correct_answer)
+                            @if($value->answer===$value->question->correct_answer)
                                 @foreach($arr_answer as $answer)
-                                    @if($answer==$value->question->correct_answer)
+                                    @if($answer===$value->question->correct_answer)
                                         <li id="" class="item-quest-answer " style="background-color:chartreuse">
                                             <div class="fleft">
                                                 <span class="fleft">
@@ -427,7 +427,7 @@
                                                         <?php $letter++; $answer_x++; ?> 
                                                     </strong> </span>
                                                 <span class="fleft" style="font-size: 13px">
-                                                    <p> {{$answer}} </p>
+                                                    <p> {!!$answer!!} </p>
                                                 </span>
                                             </div>
                                         </li>
@@ -441,7 +441,7 @@
                                                         <?php $letter++; $answer_x++; ?> 
                                                     </strong> </span>
                                                 <span class="fleft" style="font-size: 13px">
-                                                    <p> {{$answer}} </p>
+                                                    <p> {!!$answer!!} </p>
                                                 </span>
                                             </div>
                                         </li>
@@ -449,7 +449,7 @@
                                 @endforeach
                             @else
                                 @foreach($arr_answer as $answer)
-                                    @if($answer==$value->question->correct_answer)
+                                    @if($answer===$value->question->correct_answer)
                                         <li id="" class="item-quest-answer " style="background-color:chartreuse">
                                             <div class="fleft">
                                                 <span class="fleft">
@@ -459,11 +459,11 @@
                                                         <?php $letter++; $answer_x++; ?> 
                                                     </strong> </span>
                                                 <span class="fleft" style="font-size: 13px">
-                                                    <p> {{$answer}} </p>
+                                                    <p> {!!$answer!!} </p>
                                                 </span>
                                             </div>
                                         </li>
-                                    @elseif($answer==$value->answer)
+                                    @elseif($answer===$value->answer)
                                         <li id="" class="item-quest-answer " style="background-color:#ff3019">
                                             <div class="fleft">
                                                 <span class="fleft">
@@ -473,7 +473,7 @@
                                                         <?php $letter++; $answer_x++; ?> 
                                                     </strong> </span>
                                                 <span class="fleft" style="font-size: 13px">
-                                                    <p> {{$answer}} </p>
+                                                    <p> {!!$answer!!} </p>
                                                 </span>
                                             </div>
                                         </li>
@@ -487,7 +487,7 @@
                                                         <?php $letter++; $answer_x++; ?> 
                                                     </strong> </span>
                                                 <span class="fleft" style="font-size: 13px">
-                                                    <p> {{$answer}} </p>
+                                                    <p> {!!$answer!!} </p>
                                                 </span>
                                             </div>
                                         </li>

@@ -13,7 +13,7 @@
 <!-- Description Field -->
 <div class="form-group col-sm-12 col-lg-12">
     {!! Form::label('description', 'Mô tả:') !!}
-    {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
+    {!! Form::textarea('description', null, ['class' => 'form-control','id'=>'editorDescription']) !!}
 </div>
 <?php
 
@@ -60,3 +60,12 @@ $stt=array(
     {!! Form::submit('Lưu', ['class' => 'btn btn-primary']) !!}
     <a href="{{ route('admin.assignments.index') }}" class="btn btn-default">Đóng</a>
 </div>
+@push('scripts')
+    <script src="{{asset('js/ckeditor/ckeditor.js')}}"></script>
+    <script>
+        CKEDITOR.replace('editorDescription', {
+            filebrowserBrowseUrl: "{{ route('ckfinder_browser') }}"
+         } );
+    </script>
+    @include('ckfinder::setup')
+@endpush

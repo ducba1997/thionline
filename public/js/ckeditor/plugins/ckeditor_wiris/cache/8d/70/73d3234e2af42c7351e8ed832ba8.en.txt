@@ -1,0 +1,1 @@
+{"result":{"text":"square root of 3 space c ủ a space 3 space b ằ n g space m ấ y"},"status":"ok"}

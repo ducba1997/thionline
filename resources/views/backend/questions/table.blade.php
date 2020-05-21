@@ -34,11 +34,11 @@
             <td>{{ $question->idExam->name }}</td>
             @endif
             <td>{{ $question->idLevelQuestion->name }}</td>
-            <td>{{ $question->content }}</td>
-            <td>{{ $question->correct_answer }}</td>
-            <td>{{ $question->answer_1 }}</td>
-            <td>{{ $question->answer_2 }}</td>
-            <td>{{ $question->answer_3 }}</td>
+            <td>{!! $question->content !!}</td>
+            <td>{!! $question->correct_answer !!}</td>
+            <td>{!! $question->answer_1 !!}</td>
+            <td>{!! $question->answer_2 !!}</td>
+            <td>{!! $question->answer_3 !!}</td>
             <td>
                 @if(Request::get('exam'))
                 {!! Form::open(['route' => ['admin.questions.destroy', 'id'=>$question->id,'exam'=>Request::get('exam')], 'method' => 'delete']) !!}

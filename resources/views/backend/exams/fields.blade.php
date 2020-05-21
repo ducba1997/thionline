@@ -58,9 +58,17 @@ $tt=array(
 <!-- Description Field -->
 <div class="form-group col-sm-12">
     {!! Form::label('description', 'Mô tả:') !!}
-    {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
+    {!! Form::textarea('description', null, ['class' => 'form-control','id'=>'editorDescription']) !!}
 </div>
-
+@push('scripts')
+    <script src="{{asset('js/ckeditor/ckeditor.js')}}"></script>
+    <script>
+        CKEDITOR.replace('editorDescription', {
+            filebrowserBrowseUrl: "{{ route('ckfinder_browser') }}"
+         } );
+    </script>
+    @include('ckfinder::setup')
+@endpush
 <!-- Password Field -->
 <div class="form-group col-sm-6 hidden">
     {!! Form::label('password', 'Password:') !!}

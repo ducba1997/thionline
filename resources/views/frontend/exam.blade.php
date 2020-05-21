@@ -409,7 +409,7 @@
                         <div class="fleft">
                         </div>
                         <div class="fleft">
-                            <p>&nbsp{{$value['content']}}</p>
+                            <p>&nbsp{!!$value['content']!!}</p>
                         </div>
                         <input type="hidden" id="hdnnumans_148997" value="">
                         <div class="clear"></div>
@@ -422,7 +422,7 @@
                                         <input type="radio" value="{{$answer}}" name="question_{{$value['id']}}" id=""> <strong style="font-size: 13px">{{$letter}}.&nbsp<?php $letter++;
                                                                                                                                                                              ?> </strong> </span>
                                     <span class="fleft" style="font-size: 13px">
-                                        <p> {{$answer}} </p>
+                                        <p> {!!$answer!!} </p>
                                     </span>
                                 </div>
                             </li>
