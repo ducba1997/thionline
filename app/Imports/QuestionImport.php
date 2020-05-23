@@ -29,7 +29,7 @@ class QuestionImport implements ToModel, WithHeadingRow
         if(!$row['cau_hoi'])
             return;
         $id_level_question=1;
-        if(LevelQuestion::where('name',$row['muc_do_cau_hoi']))
+        if(count(LevelQuestion::where('name',$row['muc_do_cau_hoi'])->get()))
             $id_level_question=LevelQuestion::where('name',$row['muc_do_cau_hoi'])->first()->id;
         //dd($id_level_question);
         return new Question([
