@@ -36,6 +36,7 @@ $examvalue = Exam::where('id', Request::get('exam'))->first();
                 1, Không sửa file mẫu tránh gây lỗi khi nhập dữ liệu.<br>
                 2, Nhập nội dung theo đúng định dạng và cột.<br>
                3, Quá trình upload file và nhập dữ liệu có thể tốn thời gian, vui lòng chờ và không đóng trình duyệt<br>
+                4, Danh sách mức độ câu hỏi bao gồm: @foreach(\App\Models\Manage\LevelQuestion::all() as $it){{$it->name}},  @endforeach
             </span>
             <form action="{{route('admin.questions.importPost')}}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
@@ -56,7 +57,7 @@ $examvalue = Exam::where('id', Request::get('exam'))->first();
                     {!! Form::select('id_exam', $valueExam,null, ['class' => 'form-control']) !!}
                 </div>
                 @endif
-                <div class="form-group col-sm-6">
+                <div class="form-group col-sm-6 hidden">
                     {!! Form::label('id_grade', 'Mức độ:') !!}
                     {!! Form::select('id_level_question',$subjectItems, null, ['class' => 'form-control']) !!}
                 </div>

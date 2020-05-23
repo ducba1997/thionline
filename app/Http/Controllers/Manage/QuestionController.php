@@ -76,7 +76,7 @@ class QuestionController extends AppBaseController
         return view('backend.questions.importexcel');
     } 
     public function postImport(Request $request){
-        $import = Excel::import(new QuestionImport($request->id_exam,$request->id_level_question), request()->file('fileExcel'));
+        $import = Excel::import(new QuestionImport($request->id_exam), request()->file('fileExcel'));
         Flash::success('Thêm dữ liệu từ file thành công');
         if($request->exam)
             return redirect(route('admin.questions.index').'?exam='.$request->exam);
@@ -88,10 +88,7 @@ class QuestionController extends AppBaseController
 
         Flash::success('Đã xóa dữ liệu thành công.');
 
-        if($request->exam)
-            return redirect(route('admin.questions.index').'?exam='.$request->exam);
-        else
-            return redirect(route('admin.questions.index'));
+        
     }
     /**
      * Display the specified Question.

@@ -2,6 +2,7 @@
 
 namespace App\Imports;
 
+use App\Models\Manage\LevelQuestion;
 use App\Models\Manage\Question;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -13,9 +14,8 @@ class QuestionImport implements ToModel, WithHeadingRow
     * @return \Illuminate\Database\Eloquent\Model|null
     */
     private $exam,$level_question;
-    public function __construct($exam,$level_question){
+    public function __construct($exam){
         $this->exam=$exam;
-        $this->level_question=$level_question;
     }
     public function headingRow() : int
     {
@@ -28,9 +28,13 @@ class QuestionImport implements ToModel, WithHeadingRow
         //dd($row);
         if(!$row['cau_hoi'])
             return;
+        $id_level_question=1;
+        if(LevelQuestion::where('name',$row['muc_do_cau_hoi']))
+            $id_level_question=LevelQuestion::where('name',$row['muc_do_cau_hoi'])->first()->id;
+        //dd($id_level_question);
         return new Question([
             'id_exam' => $this->exam,
-            'id_level_question' => $this->level_question,
+            'id_level_question' => $id_level_question,
             'content' => $row['cau_hoi'],
             'correct_answer' => $row['dap_an_dung'],
             'answer_1' =>$row['dap_an_a'],
