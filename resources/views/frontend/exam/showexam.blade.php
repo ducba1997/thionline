@@ -51,7 +51,7 @@ if(count($data_check_result_test->get()))
                                     ->where('exam.id_grade', '=', $data_grade->id)
                                     ->where('exam.id_subject', '=', $data_subject->id)
                                     ->where('exam.status', '=', 1)
-                                    ->paginate(1); 
+                                    ->paginate(10); 
             ?>
 
                 <ul class="list-content-chuong list-content-cauhoi">
@@ -70,7 +70,7 @@ if(count($data_check_result_test->get()))
                             </a>
                         </div>
                         <div class="i-content">
-                            {{$value->exam_description}}
+                            {!!$value->exam_description!!}
                         </div>
                         <div class="i-bot">
                             <div class="row">

@@ -1,0 +1,1 @@
+{"result":{"text":"open vertical bar 342 close vertical bar"},"status":"ok"}

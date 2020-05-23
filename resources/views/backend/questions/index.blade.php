@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.semanticui.min.css">
-     <style>
-        .mt-1{
-            margin-top: 10px;
-        }
-    </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.semanticui.min.css">
+<style>
+    .mt-1 {
+        margin-top: 10px;
+    }
+</style>
 @endsection
 @push('scripts')
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -23,30 +23,29 @@
 
 <script>
     $(document).ready(function() {
-       var dt= $('.table').DataTable({
-            buttons: [
-                    {
-                        text: "<i class='fa fa-file-pdf-o'></i>&nbspXuất PDF",
-                        extend: "pdfHtml5",
-                        title: null,
-                        messageTop:"Danh sách",
-                        className: 'btn btn-danger'
-                    },
-                    {
-                        text: '<i class="fa fa-file-excel-o"></i>&nbspXuất Excel',
-                        extend: "excelHtml5",
-                        title: null,
-                        messageTop:"Danh sách",
-                        className: 'btn btn-success'
-                    }
-                ],
+        var dt = $('.table').DataTable({
+            buttons: [{
+                    text: "<i class='fa fa-file-pdf-o'></i>&nbspXuất PDF",
+                    extend: "pdfHtml5",
+                    title: null,
+                    messageTop: "Danh sách",
+                    className: 'btn btn-danger'
+                },
+                {
+                    text: '<i class="fa fa-file-excel-o"></i>&nbspXuất Excel',
+                    extend: "excelHtml5",
+                    title: null,
+                    messageTop: "Danh sách",
+                    className: 'btn btn-success'
+                }
+            ],
             "dom": '<"pull-right"f>t<"row mt-1" <"col-sm-3" l> <"col-sm-3" B><"col-sm-6" <"pull-right" p>>>',
             "language": {
                 "lengthMenu": "Hiển thị _MENU_ trên 1 trang",
                 "zeroRecords": "Không tìm thấy nội dung cần tìm",
                 "infoEmpty": "Chưa có nội dung",
                 "infoFiltered": "(filtered from _MAX_ total records)",
-                "sSearch":"Tìm kiếm",
+                "sSearch": "Tìm kiếm",
                 "oPaginate": {
                     "sFirst": "Đầu", // This is the link to the first page
                     "sPrevious": "Trước", // This is the link to the previous page
@@ -60,43 +59,85 @@
 
     });
 </script>
+<script>
+    $(document).ready(function() {
+        $('#questions-table input[type="checkbox"]:eq(0)').change(function() {
+            $('#questions-table input[type="checkbox"]').prop('checked', $(this).prop("checked"));
+        });
+    });
+    
+    $('#del_question_list').on('click', function() {
+        $confirm = confirm('Bạn có chắc chắn muốn xoá các câu hỏi đã chọn không?');
+        if ($confirm == true) {
+            $arr_id_question = [];
+
+            $('#questions-table input[type="checkbox"]:checkbox:checked').each(function(i) {
+                $arr_id_question[i] = $(this).val();
+            });
+
+            if ($arr_id_question.length === 0) {
+                alert('Vui lòng chọn ít nhất một câu hỏi.');
+            } else {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: '{{route("admin.questions.deleteMulti")}}',
+                    type: 'POST',
+                    data: {
+                        arr_id_question: $arr_id_question,
+                    },
+                    success: function(data) {
+                        location.reload();
+                    },
+                    error: function() {
+                        alert('Đã có lỗi xảy ra, hãy thử lại.');
+                    }
+                });
+            }
+        } else {
+            return false;
+        }
+    });
+</script>
 @endpush
 @section('content')
-    
-    <div class="panel panel-default" style="margin: 0px 15px 0px 15px">
+
+<div class="panel panel-default" style="margin: 0px 15px 0px 15px">
     <div class="panel-body">
         @if(Request::get('exam'))
-        <?php $examItems=App\Models\Manage\Exam::where('id',Request::get('exam'))->first() ?>
+        <?php $examItems = App\Models\Manage\Exam::where('id', Request::get('exam'))->first() ?>
         <section class="content-header">
             <h1 class="pull-left" style="width: 600px">Danh sách câu hỏi đề thi {{$examItems->name}}</h1>
-        <h1 class="pull-right">
-           <a class="btn btn-success pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{{ route('admin.questions.create') }}?exam={{$examItems->id}}"><i class="fa fa-fw fa-plus"></i>&nbspThêm mới</a>
-        </h1>
+            <h1 class="pull-right">
+                <a class="btn btn-success pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{{ route('admin.questions.create') }}?exam={{$examItems->id}}"><i class="fa fa-fw fa-plus"></i>&nbspThêm mới</a>
+            </h1>
         </section>
         @else
         <section class="content-header">
             <h1 class="pull-left">Danh sách câu hỏi</h1>
-        <h1 class="pull-right">
-           <a class="btn btn-success pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{{ route('admin.questions.create') }}"><i class="fa fa-fw fa-plus"></i>&nbspThêm mới</a>
-        </h1>
+            <h1 class="pull-right">
+                <a class="btn btn-success pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{{ route('admin.questions.create') }}"><i class="fa fa-fw fa-plus"></i>&nbspThêm mới</a>
+            </h1>
         </section>
         @endif
     </div>
 </div>
-    <div class="content">
-        <div class="clearfix"></div>
+<div class="content">
+    <div class="clearfix"></div>
 
-        @include('flash::message')
+    @include('flash::message')
 
-        <div class="clearfix"></div>
-        <div class="box box-primary">
-            <div class="box-body">
-                    @include('backend.questions.table')
-            </div>
-        </div>
-        <div class="text-center">
-        
+    <div class="clearfix"></div>
+    <div class="box box-primary">
+        <div class="box-body">
+            @include('backend.questions.table')
         </div>
     </div>
-@endsection
+    <div class="text-center">
 
+    </div>
+</div>
+@endsection

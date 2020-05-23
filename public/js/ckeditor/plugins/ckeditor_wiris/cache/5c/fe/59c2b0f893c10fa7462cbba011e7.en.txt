@@ -1,0 +1,1 @@
+{"result":{"text":"square root of d đ á 12 open parentheses 213 2 over 2 close parentheses"},"status":"ok"}

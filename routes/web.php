@@ -67,5 +67,6 @@ Route::group(['prefix' => 'admin','middleware' => 'adminauth'], function () {
     Route::resource('assignments', 'Manage\AssignmentController', ["as" => 'admin']);
     Route::get('question/import/importExcel','Manage\QuestionController@getImport')->name('admin.questions.importGet');
     Route::post('question/import','Manage\QuestionController@postImport')->name('admin.questions.importPost');
+    Route::post('question/deleteMulti','Manage\QuestionController@deleteMulti')->name('admin.questions.deleteMulti');
 });
 

@@ -7,6 +7,7 @@ use App\Http\Requests\Manage\UpdateQuestionRequest;
 use App\Repositories\Manage\QuestionRepository;
 use App\Http\Controllers\AppBaseController;
 use App\Imports\QuestionImport;
+use App\Models\Manage\Question;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use Flash;
@@ -77,6 +78,16 @@ class QuestionController extends AppBaseController
     public function postImport(Request $request){
         $import = Excel::import(new QuestionImport($request->id_exam,$request->id_level_question), request()->file('fileExcel'));
         Flash::success('Thêm dữ liệu từ file thành công');
+        if($request->exam)
+            return redirect(route('admin.questions.index').'?exam='.$request->exam);
+        else
+            return redirect(route('admin.questions.index'));
+    }
+    public function deleteMulti(Request $request){
+        Question::whereIn('id',$request->arr_id_question)->delete();
+
+        Flash::success('Đã xóa dữ liệu thành công.');
+
         if($request->exam)
             return redirect(route('admin.questions.index').'?exam='.$request->exam);
         else

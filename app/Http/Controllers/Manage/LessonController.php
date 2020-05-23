@@ -55,7 +55,8 @@ class LessonController extends AppBaseController
      */
     public function store(CreateLessonRequest $request)
     {
-        $request->merge(['slug' => str_slug($request->name)]);
+        $request->merge(['slug' => str_slug($request->name),'id_users'=>\Auth::id()]);
+        //dd($request);
         $input = $request->all();
 
         $lesson = $this->lessonRepository->create($input);

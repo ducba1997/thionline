@@ -39,6 +39,7 @@ class Lesson extends Model
         'id_grade',
         'id_subject',
         'id_chapter',
+        'id_users',
         'image',
         'content',
         'status'
@@ -56,6 +57,7 @@ class Lesson extends Model
         'id_grade' => 'integer',
         'id_subject' => 'integer',
         'id_chapter' => 'integer',
+        'id_users' => 'integer',
         'image' => 'string',
         'content' => 'string',
         'status' => 'boolean'

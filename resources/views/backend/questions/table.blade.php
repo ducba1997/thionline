@@ -8,10 +8,13 @@
     <a class="btn btn-success" href="{{route('admin.questions.importGet')}}"><i class="fa fa-file-excel-o"></i>&nbspNhập câu hỏi file từ Excel</a>
 </div>
 @endif
-
+<div class="pull-left" style="margin-left: 10px">
+    <a class="btn btn-danger" id="del_question_list"><i class="fa fa-trash"></i>&nbspXóa</a>
+</div>
 <table class="ui celled table" id="questions-table">
     <thead>
         <tr>
+            <th><input type="checkbox"></th>
             <th>STT</th>
             @if(!Request::get('exam'))
             <th>Tên đề thi</th>
@@ -29,6 +32,7 @@
         <?php $stt = 0; ?>
         @foreach($questions as $question)
         <tr>
+            <td><input type="checkbox" name="arr_id_question[]" value="{{$question->id}}"></td>
             <td>{{++$stt}}</td>
             @if(!Request::get('exam'))
             <td>{{ $question->idExam->name }}</td>

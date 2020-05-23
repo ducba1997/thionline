@@ -1,0 +1,1 @@
+{"result":{"text":"open square brackets 3 close square brackets subscript 3"},"status":"ok"}
