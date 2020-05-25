@@ -33,7 +33,8 @@ class AssignmentController extends AppBaseController
         
         $this->assignmentRepository->pushCriteria(new RequestCriteria($request));
         $assignments = $this->assignmentRepository->all();
-
+        if(Auth::user()->id_permission!=1)
+        $assignments = $this->assignmentRepository->where('id_users',Auth::id())->get();
         return view('backend.assignments.index')
             ->with('assignments', $assignments);
     }

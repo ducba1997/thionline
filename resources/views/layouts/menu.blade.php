@@ -1,12 +1,18 @@
 <li class="{{ Request::is('admin') ? 'active' : '' }}">
     <a href="{{ route('admin.dashboard.index') }}"><i class="fa fa-dashboard"></i><span>Trang tổng quan</span></a>
 </li>
+@if(Auth::user()->id_permission==1)
+<li class="{{ Request::is('admin') ? 'active' : '' }}">
+    <a href="{{ route('admin.dashboard.index') }}"><i class="fa fa-dashboard"></i><span>Trang tổng quan</span></a>
+</li>
 
 <li class="{{ Request::is('admin/users*') ? 'active' : '' }}">
     <a href="{{ route('admin.users.index') }}"><i class="fa fa-user"></i><span>Quản lý người dùng</span></a>
 </li>
-
-
+@endif
+<li class="{{ Request::is('admin/assignments*') ? 'active' : '' }}">
+    <a href="{{ route('admin.assignments.index') }}"><i class="fa fa-file-word-o"></i><span>Quản lý tài liệu</span></a>
+</li>
 
 <li class="{{ Request::is('admin/lessons*') ? 'active' : '' }}">
     <a href="{{ route('admin.lessons.index') }}"><i class="fa fa-book"></i><span>Quản lý bài học</span></a>
@@ -17,7 +23,7 @@
 <li class="{{ Request::is('admin/exams*') ? 'active' : '' }}">
     <a href="{{ route('admin.exams.index') }}"><i class="fa fa-newspaper-o"></i><span>Quản lý đề thi</span></a>
 </li>
-
+@if(Auth::user()->id_permission==1)
 <li class="{{ Request::is('admin/questions*') ? 'active' : '' }}">
     <a href="{{ route('admin.questions.index') }}"><i class="fa fa-question-circle"></i><span>Quản lý câu hỏi</span></a>
 </li>
@@ -30,9 +36,7 @@
     <a href="{{ route('admin.resultTestDetails.index') }}"><i class="fa fa-edit"></i><span>Chi tiết bài thi</span></a>
 </li>-->
 
-<li class="{{ Request::is('admin/assignments*') ? 'active' : '' }}">
-    <a href="{{ route('admin.assignments.index') }}"><i class="fa fa-file-word-o"></i><span>Quản lý tài liệu</span></a>
-</li>
+
 <li class="treeview">
     <a href="#">
         <i class="fa fa-gears"></i>
@@ -63,3 +67,4 @@
     </ul>
 </li>
 
+@endif

@@ -52,7 +52,11 @@ $dataChart2 = C::database($resultest, 'line', 'highcharts')
                 <div class="icon">
                     <i class="fa fa-user"></i>
                 </div>
+                @if(Auth::user()->id_permission==1)
                 <a href="{{ route('admin.users.index') }}" class="small-box-footer">Xem thêm <i class="fa fa-arrow-circle-right"></i></a>
+                @else 
+                <a href="#" class="small-box-footer">Xem thêm <i class="fa fa-arrow-circle-right"></i></a>
+                @endif
             </div>
         </div>
         <!-- ./col -->
@@ -97,7 +101,7 @@ $dataChart2 = C::database($resultest, 'line', 'highcharts')
                 <div class="icon">
                     <i class="fa fa-file-word-o"></i>
                 </div>
-                <a href="{{ route('admin.assignments.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="{{ route('admin.assignments.index') }}" class="small-box-footer">Xem thêm <i class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div>
         <!-- ./col -->

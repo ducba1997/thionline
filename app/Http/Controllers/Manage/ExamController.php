@@ -33,7 +33,8 @@ class ExamController extends AppBaseController
     {
         $this->examRepository->pushCriteria(new RequestCriteria($request));
         $exams = $this->examRepository->all();
-
+        if(Auth::user()->id_permission!=1)
+        $exams = $this->examRepository->where('id_users',Auth::id())->get();
         return view('backend.exams.index')
             ->with('exams', $exams);
     }

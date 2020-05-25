@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
-
+use Auth;
 class LessonController extends AppBaseController
 {
     /** @var  LessonRepository */
@@ -31,7 +31,8 @@ class LessonController extends AppBaseController
     {
         $this->lessonRepository->pushCriteria(new RequestCriteria($request));
         $lessons = $this->lessonRepository->all();
-
+        if(Auth::user()->id_permission!=1)
+        $lessons = $this->lessonRepository->where('id_users',Auth::id())->get();
         return view('backend.lessons.index')
             ->with('lessons', $lessons);
     }
