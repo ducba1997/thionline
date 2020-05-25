@@ -2,9 +2,6 @@
     <a href="{{ route('admin.dashboard.index') }}"><i class="fa fa-dashboard"></i><span>Trang tổng quan</span></a>
 </li>
 @if(Auth::user()->id_permission==1)
-<li class="{{ Request::is('admin') ? 'active' : '' }}">
-    <a href="{{ route('admin.dashboard.index') }}"><i class="fa fa-dashboard"></i><span>Trang tổng quan</span></a>
-</li>
 
 <li class="{{ Request::is('admin/users*') ? 'active' : '' }}">
     <a href="{{ route('admin.users.index') }}"><i class="fa fa-user"></i><span>Quản lý người dùng</span></a>

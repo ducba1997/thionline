@@ -155,7 +155,7 @@
                             @endforeach
                         </ul>
                         <!-- END submenu chuong trinh -->
-                        <div class="btnrank"><a href=""><i class="fas fa-star"></i> BXH Tuần/Tháng</a></div>
+                        <div class="btnrank"><a href=""><i class="fas fa-star"></i> Bảng xếp hạng</a></div>
                     </div>
                 </div>
             </div>
