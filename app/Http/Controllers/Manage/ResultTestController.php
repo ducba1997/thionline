@@ -6,11 +6,12 @@ use App\Http\Requests\Manage\CreateResultTestRequest;
 use App\Http\Requests\Manage\UpdateResultTestRequest;
 use App\Repositories\Manage\ResultTestRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Manage\Exam;
 use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
-
+use Auth;
 class ResultTestController extends AppBaseController
 {
     /** @var  ResultTestRepository */
@@ -31,7 +32,8 @@ class ResultTestController extends AppBaseController
     {
         $this->resultTestRepository->pushCriteria(new RequestCriteria($request));
         $resultTests = $this->resultTestRepository->orderBy('created_at','desc')->all();
-
+        if(Auth::user()->id_permission!=1)
+            $resultTests = $this->resultTestRepository->whereIn('id_exam',Exam::where('id_users',Auth::id())->get())->orderBy('created_at','desc')->get();
         return view('backend.result_tests.index')
             ->with('resultTests', $resultTests);
     }

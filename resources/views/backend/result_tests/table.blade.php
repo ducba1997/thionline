@@ -18,7 +18,7 @@
                 <td>{{ $resultTest->idExam->name }}</td>
             <td>{{ $resultTest->idUser->name }}</td>
             <td>{{ $resultTest->time_start }}</td>
-            <td>{{ $resultTest->time_to_do }} giây</td>
+            <td>@if(!$resultTest->time_to_do) Chưa nạp bài @else {{ $resultTest->time_to_do }} giây @endif</td>
             <td>{{ $resultTest->point }} </td>
                 <td>
                     {!! Form::open(['route' => ['admin.resultTests.destroy', $resultTest->id], 'method' => 'delete']) !!}

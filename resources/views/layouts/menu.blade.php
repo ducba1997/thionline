@@ -25,9 +25,7 @@
     <a href="{{ route('admin.questions.index') }}"><i class="fa fa-question-circle"></i><span>Quản lý câu hỏi</span></a>
 </li>
 
-<li class="{{ Request::is('admin/resultTests*') ? 'active' : '' }}">
-    <a href="{{ route('admin.resultTests.index') }}"><i class="fa fa-file-text-o"></i><span>Quản lý bài thi</span></a>
-</li>
+
 <!--
 <li class="{{ Request::is('admin/resultTestDetails*') ? 'active' : '' }}">
     <a href="{{ route('admin.resultTestDetails.index') }}"><i class="fa fa-edit"></i><span>Chi tiết bài thi</span></a>
@@ -65,3 +63,6 @@
 </li>
 
 @endif
+<li class="{{ Request::is('admin/resultTests*') ? 'active' : '' }}">
+    <a href="{{ route('admin.resultTests.index') }}"><i class="fa fa-file-text-o"></i><span>Quản lý bài thi</span></a>
+</li>
